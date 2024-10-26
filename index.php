@@ -16,6 +16,16 @@ switch ($action) {
     default:
         $genreController = new GenreController($db);
         $genres = $genreController->showGenres();
+        $genreData = [];
+
+        while ($genre = $genres->fetch(PDO::FETCH_ASSOC)) {
+            $genreId = $genre['id'];
+            $genre['albums'] = $genreController->getAlbumsByGenre($genreId);
+            $genre['artists'] = $genreController->getArtistsByGenre($genreId);
+            $genre['events'] = $genreController->getEventsByGenre($genreId);
+            $genreData[] = $genre;
+        }
+
         require __DIR__ . '/views/genre_view.php';
         break;
 }
