@@ -13,4 +13,9 @@ class EventController {
         $result = $event->getEventsByGenre($genreId);
         return $result;
     }
+
+    public function getEventById($eventId) {
+        $event = new Event($this->conn);
+        return $event->getEventById($eventId);
+    }
 }

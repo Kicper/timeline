@@ -14,4 +14,12 @@ class Album {
         $stmt->execute();
         return $stmt;
     }
+
+    public function getAlbumById($albumId) {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $albumId);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }

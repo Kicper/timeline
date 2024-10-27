@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genre Details</title>
+    <title>Artist Details</title>
     <style>
         body, html {
             height: 100%;
@@ -21,11 +21,11 @@
             margin-bottom: 20px;
             color: #333;
         }
-        .genre-description {
+        .artist-bio {
             font-size: 1.2em;
             margin-top: 20px;
         }
-        .genre-icon {
+        .artist-icon {
             margin-top: 20px;
             width: 150px;
             height: auto;
@@ -56,10 +56,10 @@
         <a href="index.php"><button class="return-button">Back to timeline</button></a>
     </div>
 
-    <h1><?= htmlspecialchars($genre['name']) ?></h1>
-    <p class="genre-description"><?= htmlspecialchars($genre['description']) ?></p>
-    <?php if (!empty($genre['icon_url'])): ?>
-        <img src="<?= htmlspecialchars($genre['icon_url']) ?>" alt="Genre Icon" class="genre-icon">
+    <h1><?= htmlspecialchars($artist['name']) ?></h1>
+    <p class="artist-bio"><?= htmlspecialchars($artist['bio']) ?></p>
+    <?php if (!empty($artist['image_url'])): ?>
+        <img src="<?= htmlspecialchars($artist['image_url']) ?>" alt="Artist Icon" class="artist-icon">
     <?php endif; ?>
 </body>
 </html>

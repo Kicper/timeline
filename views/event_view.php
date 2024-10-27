@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genre Details</title>
+    <title>Event Details</title>
     <style>
         body, html {
             height: 100%;
@@ -21,11 +21,11 @@
             margin-bottom: 20px;
             color: #333;
         }
-        .genre-description {
+        .event-description {
             font-size: 1.2em;
             margin-top: 20px;
         }
-        .genre-icon {
+        .event-icon {
             margin-top: 20px;
             width: 150px;
             height: auto;
@@ -56,10 +56,10 @@
         <a href="index.php"><button class="return-button">Back to timeline</button></a>
     </div>
 
-    <h1><?= htmlspecialchars($genre['name']) ?></h1>
-    <p class="genre-description"><?= htmlspecialchars($genre['description']) ?></p>
-    <?php if (!empty($genre['icon_url'])): ?>
-        <img src="<?= htmlspecialchars($genre['icon_url']) ?>" alt="Genre Icon" class="genre-icon">
+    <h1><?= htmlspecialchars($event['title']) ?></h1>
+    <p class="event-description"><?= htmlspecialchars($event['description']) ?></p>
+    <?php if (!empty($event['image_url'])): ?>
+        <img src="<?= htmlspecialchars($event['image_url']) ?>" alt="Event Icon" class="event-icon">
     <?php endif; ?>
 </body>
 </html>

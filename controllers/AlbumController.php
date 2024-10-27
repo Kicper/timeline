@@ -13,4 +13,9 @@ class AlbumController {
         $result = $album->getAlbumsByGenre($genreId);
         return $result;
     }
+
+    public function getAlbumById($albumId) {
+        $album = new Album($this->conn);
+        return $album->getAlbumById($albumId);
+    }
 }

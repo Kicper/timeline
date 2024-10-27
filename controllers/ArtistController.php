@@ -13,4 +13,9 @@ class ArtistController {
         $result = $artist->getArtistsByGenre($genreId);
         return $result;
     }
+
+    public function getArtistById($artistId) {
+        $artist = new Artist($this->conn);
+        return $artist->getArtistById($artistId);
+    }
 }

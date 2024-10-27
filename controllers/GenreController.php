@@ -11,10 +11,15 @@ class GenreController {
         $this->conn = $db;
     }
 
-    public function showGenres() {
+    public function getAllGenres() {
         $genre = new Genre($this->conn);
         $result = $genre->getAllGenres();
         return $result;
+    }
+
+    public function getGenreById($genreId) {
+        $genre = new Genre($this->conn);
+        return $genre->getGenreById($genreId);
     }
 
     public function getAlbumsByGenre($genreId) {
