@@ -49,6 +49,11 @@
             top: 10px;
             right: 20px;
         }
+        .artist-details {
+            margin-top: 5px;
+            font-size: 1.1em;
+            color: #555;
+        }
     </style>
 </head>
 <body>
@@ -57,7 +62,16 @@
     </div>
 
     <h1><?= htmlspecialchars($artist['name']) ?></h1>
+
+    <div class="artist-details">
+        <p><strong>Date of birth or start of activity:</strong> <?= htmlspecialchars($artist['birth_date']) ?></p>
+        <?php if (!empty($artist['death_date'])): ?>
+            <p><strong>Date of death or termination of activity:</strong> <?= htmlspecialchars($artist['death_date']) ?></p>
+        <?php endif; ?>
+    </div>
+
     <p class="artist-bio"><?= htmlspecialchars($artist['bio']) ?></p>
+    
     <?php if (!empty($artist['image_url'])): ?>
         <img src="<?= htmlspecialchars($artist['image_url']) ?>" alt="Artist Icon" class="artist-icon">
     <?php endif; ?>

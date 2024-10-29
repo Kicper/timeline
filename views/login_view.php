@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../controllers/UserController.php';
 
@@ -13,6 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $userController = new UserController($db);
     if ($userController->login($username, $password)) {
+        $_SESSION['logged_in'] = true;
+        $_SESSION['username'] = $username;
         header('Location: index.php');
         exit();
     } else {

@@ -13,6 +13,14 @@ switch ($action) {
         require __DIR__ . '/views/login_view.php';
         break;
 
+    case 'logout':
+        session_start();
+        session_unset();
+        session_destroy();
+        header('Location: index.php');
+        exit();
+        break;
+
     case 'showGenre':
         $genreId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
         $genreController = new GenreController($db);

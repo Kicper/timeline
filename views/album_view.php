@@ -49,6 +49,11 @@
             top: 10px;
             right: 20px;
         }
+        .album-details {
+            margin-top: 5px;
+            font-size: 1.1em;
+            color: #555;
+        }
     </style>
 </head>
 <body>
@@ -57,7 +62,13 @@
     </div>
 
     <h1><?= htmlspecialchars($album['title']) ?></h1>
+
+    <div class="album-details">
+        <p><strong>Release date of an album:</strong> <?= htmlspecialchars($album['release_date']) ?></p>
+    </div>
+
     <p class="album-description"><?= htmlspecialchars($album['description']) ?></p>
+    
     <?php if (!empty($album['cover_image_url'])): ?>
         <img src="<?= htmlspecialchars($album['cover_image_url']) ?>" alt="Album Icon" class="album-icon">
     <?php endif; ?>

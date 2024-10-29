@@ -49,6 +49,11 @@
             top: 10px;
             right: 20px;
         }
+        .event-details {
+            margin-top: 5px;
+            font-size: 1.1em;
+            color: #555;
+        }
     </style>
 </head>
 <body>
@@ -57,7 +62,14 @@
     </div>
 
     <h1><?= htmlspecialchars($event['title']) ?></h1>
+
+    <div class="event-details">
+        <p><strong>Start date of an event:</strong> <?= htmlspecialchars($event['start_date']) ?></p>
+        <p><strong>End date of an event:</strong> <?= htmlspecialchars($event['end_date']) ?></p>
+    </div>
+
     <p class="event-description"><?= htmlspecialchars($event['description']) ?></p>
+
     <?php if (!empty($event['image_url'])): ?>
         <img src="<?= htmlspecialchars($event['image_url']) ?>" alt="Event Icon" class="event-icon">
     <?php endif; ?>

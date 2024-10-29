@@ -1,3 +1,9 @@
+<?php
+session_start();
+
+$isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -113,11 +119,21 @@
     </style>
 </head>
 <body>
-    <a href="index.php?action=login">
-        <button class="login-button">Login</button>
-    </a>
+    <?php if ($isLoggedIn): ?>
+        <a href="index.php?action=logout">
+            <button class="login-button">Logout</button>
+        </a>
+    <?php else: ?>
+        <a href="index.php?action=login">
+            <button class="login-button">Login</button>
+        </a>
+    <?php endif; ?>
 
     <h1>Music Timeline</h1>
+
+    <?php if ($isLoggedIn): ?>
+        <p>Welcome back, <?= htmlspecialchars($_SESSION['username']); ?>! Enjoy exploring the timeline.</p>
+    <?php endif; ?>
 
     <h2>List of Genres</h2>
     <?php
