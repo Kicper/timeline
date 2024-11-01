@@ -14,12 +14,14 @@ $genres = $genreController->getAllGenres();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Event</title>
     <style>
-        body, html {
+        body,
+        html {
             height: 100%;
             margin: 0;
             font-family: Arial, sans-serif;
@@ -30,11 +32,13 @@ $genres = $genreController->getAllGenres();
             justify-content: center;
             text-align: center;
         }
+
         h1 {
             font-size: 2.5em;
             margin-bottom: 20px;
             color: #333;
         }
+
         .event-form {
             width: 100%;
             max-width: 500px;
@@ -44,12 +48,14 @@ $genres = $genreController->getAllGenres();
             border-radius: 8px;
             text-align: left;
         }
+
         label {
             font-size: 1.1em;
             color: #333;
             display: block;
             margin-bottom: 5px;
         }
+
         input[type="text"],
         input[type="url"],
         textarea,
@@ -62,18 +68,21 @@ $genres = $genreController->getAllGenres();
             border-radius: 5px;
             font-size: 1em;
             box-sizing: border-box;
-            appearance: none; /* Remove default dropdown arrow */
+            appearance: none;
         }
+
         select {
             background-color: #f9f9f9;
             color: #333;
             cursor: pointer;
         }
+
         select:hover,
         select:focus {
             border-color: #007bff;
             outline: none;
         }
+
         .submit-button {
             width: 100%;
             font-size: 1.1em;
@@ -85,9 +94,11 @@ $genres = $genreController->getAllGenres();
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
+
         .submit-button:hover {
             background-color: #0056b3;
         }
+
         .return-button {
             font-size: 1em;
             padding: 10px 20px;
@@ -99,9 +110,11 @@ $genres = $genreController->getAllGenres();
             transition: background-color 0.3s ease;
             margin-top: 20px;
         }
+
         .return-button:hover {
             background-color: #0056b3;
         }
+
         .top-right-corner {
             position: absolute;
             top: 10px;
@@ -123,6 +136,7 @@ $genres = $genreController->getAllGenres();
         }
     </script>
 </head>
+
 <body>
     <div class="top-right-corner">
         <a href="index.php"><button class="return-button">Back to timeline</button></a>
@@ -144,7 +158,7 @@ $genres = $genreController->getAllGenres();
             <input type="date" id="end_date" name="end_date">
 
             <label for="description">Event Description:</label>
-            <textarea id="description" name="description" rows="4"  ></textarea>
+            <textarea id="description" name="description" rows="4"></textarea>
 
             <label for="genres">Genres:</label>
             <select id="genre" name="genre" required>
@@ -161,4 +175,5 @@ $genres = $genreController->getAllGenres();
         </form>
     </div>
 </body>
+
 </html>

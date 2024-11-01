@@ -21,6 +21,31 @@ switch ($action) {
         exit();
         break;
 
+    case 'changePassword':
+        session_start();
+        if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
+            header('Location: index.php?action=login');
+            exit();
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $userController = new UserController($db);
+            $currentPassword = $_POST['current_password'];
+            $newPassword = $_POST['new_password'];
+            $confirmPassword = $_POST['confirm_password'];
+
+            if ($newPassword !== $confirmPassword) {
+                $errorMessage = "New password and confirmation do not match.";
+            } elseif (!$userController->changePassword($_SESSION['username'], $currentPassword, $newPassword)) {
+                $errorMessage = "Current password is incorrect.";
+            } else {
+                header('Location: index.php');
+                exit();
+            }
+        }
+        require __DIR__ . '/views/change_password_view.php';
+        break;
+
     case 'createEvent':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $eventController = new EventController($db);

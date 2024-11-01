@@ -83,10 +83,28 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
             background-color: #0056b3;
         }
 
-        .dropdown {
+        .password-button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
             position: absolute;
             top: 10px;
             right: 140px;
+        }
+
+        .password-button:hover {
+            background-color: #0056b3;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 10px;
+            right: 360px;
         }
 
         .dropdown-button {
@@ -123,6 +141,10 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
         .dropdown-content a:hover {
             background-color: #007bff;
             color: white;
+        }
+
+        .dropdown-content.show {
+            display: block;
         }
 
         .genre-container {
@@ -198,7 +220,6 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
 </head>
 
 <body>
-
     <?php if ($isLoggedIn): ?>
         <div class="dropdown">
             <button onclick="toggleDropdown()" class="dropdown-button">Create ▼</button>
@@ -208,6 +229,9 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
                 <a href="index.php?action=createAlbum">Album</a>
             </div>
         </div>
+        <a href="index.php?action=changePassword">
+            <button class="password-button">Change Password</button>
+        </a>
         <a href="index.php?action=logout">
             <button class="login-button">Logout</button>
         </a>
@@ -382,23 +406,19 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
     <?php endforeach; ?>
 
     <script>
-        // Add event listeners directly to the checkbox elements
         document.getElementById("showEvents").addEventListener("change", toggleVisibility);
         document.getElementById("showAlbums").addEventListener("change", toggleVisibility);
         document.getElementById("showArtists").addEventListener("change", toggleVisibility);
 
         function toggleVisibility() {
-            // Get the checked state of each checkbox
             const showEvents = document.getElementById("showEvents").checked;
             const showAlbums = document.getElementById("showAlbums").checked;
             const showArtists = document.getElementById("showArtists").checked;
 
-            // Toggle visibility of events based on checkbox state
             document.querySelectorAll('.event').forEach(event => {
                 event.style.display = showEvents ? 'block' : 'none';
             });
 
-            // Toggle visibility of albums based on checkbox state
             document.querySelectorAll('.album').forEach(album => {
                 album.style.display = showAlbums ? 'block' : 'none';
             });

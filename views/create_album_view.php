@@ -71,7 +71,6 @@ $artists = $artistController->getAllArtists();
             font-size: 1em;
             box-sizing: border-box;
             appearance: none;
-            /* Remove default dropdown arrow */
         }
 
         select {
