@@ -21,6 +21,57 @@ switch ($action) {
         exit();
         break;
 
+    case 'createEvent':
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $eventController = new EventController($db);
+            $result = $eventController->createEvent($_POST);
+
+            if ($result) {
+                echo "Event created successfully!";
+                header('Location: index.php');
+                exit();
+            } else {
+                echo "Error creating event. Please check your input.";
+            }
+        } else {
+            require __DIR__ . '/views/create_event_view.php';
+        }
+        break;
+
+    case 'createArtist':
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $artistController = new ArtistController($db);
+            $result = $artistController->createArtist($_POST);
+
+            if ($result) {
+                echo "Artist created successfully!";
+                header('Location: index.php');
+                exit();
+            } else {
+                echo "Error creating artist. Please check your input.";
+            }
+        } else {
+            require __DIR__ . '/views/create_artist_view.php';
+        }
+        break;
+
+    case 'createAlbum':
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $albumController = new AlbumController($db);
+            $result = $albumController->createAlbum($_POST);
+
+            if ($result) {
+                echo "Album created successfully!";
+                header('Location: index.php');
+                exit();
+            } else {
+                echo "Error creating album. Please check your input.";
+            }
+        } else {
+            require __DIR__ . '/views/create_album_view.php';
+        }
+        break;
+
     case 'showGenre':
         $genreId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
         $genreController = new GenreController($db);

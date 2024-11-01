@@ -61,7 +61,7 @@
         <a href="index.php"><button class="return-button">Back to timeline</button></a>
     </div>
 
-    <h1><?= htmlspecialchars($event['title']) ?></h1>
+    <h1><?= htmlspecialchars($event['name']) ?></h1>
 
     <div class="event-details">
         <p><strong>Start date of an event:</strong> <?= htmlspecialchars($event['start_date']) ?></p>

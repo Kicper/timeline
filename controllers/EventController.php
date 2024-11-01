@@ -18,4 +18,16 @@ class EventController {
         $event = new Event($this->conn);
         return $event->getEventById($eventId);
     }
+
+    public function createEvent($data) {
+        $event = new Event($this->conn);
+        return $event->createEvent(
+            $data['name'],
+            $data['description'],
+            $data['start_date'],
+            $data['end_date'],
+            $data['image_url'],
+            $data['genre']
+        );
+    }
 }

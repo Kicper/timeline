@@ -49,6 +49,52 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
             background-color: #0056b3;
         }
 
+        .dropdown {
+            position: absolute;
+            top: 10px;
+            right: 140px;
+        }
+
+        .dropdown-button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .dropdown-button:hover {
+            background-color: #0056b3;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .show {
+            display: block;
+        }
+
         .genre-container {
             display: flex;
             align-items: center;
@@ -119,7 +165,16 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
     </style>
 </head>
 <body>
+
     <?php if ($isLoggedIn): ?>
+         <div class="dropdown">
+            <button onclick="toggleDropdown()" class="dropdown-button">Create ▼</button>
+            <div id="dropdownContent" class="dropdown-content">
+                <a href="index.php?action=createEvent">Event</a>
+                <a href="index.php?action=createArtist">Artist</a>
+                <a href="index.php?action=createAlbum">Album</a>
+            </div>
+        </div>
         <a href="index.php?action=logout">
             <button class="login-button">Logout</button>
         </a>
@@ -129,11 +184,25 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
         </a>
     <?php endif; ?>
 
-    <h1>Music Timeline</h1>
+    <script>
+        function toggleDropdown() {
+            document.getElementById("dropdownContent").classList.toggle("show");
+        }
 
-    <?php if ($isLoggedIn): ?>
-        <p>Welcome back, <?= htmlspecialchars($_SESSION['username']); ?>! Enjoy exploring the timeline.</p>
-    <?php endif; ?>
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown-button')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+
+    <h1>Music Timeline</h1>
 
     <h2>List of Genres</h2>
     <?php

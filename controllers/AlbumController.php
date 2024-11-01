@@ -18,4 +18,16 @@ class AlbumController {
         $album = new Album($this->conn);
         return $album->getAlbumById($albumId);
     }
+
+    public function createAlbum($data) {
+        $album = new Album($this->conn);
+        return $album->createAlbum(
+            $data['title'],
+            $data['release_date'],
+            $data['genre_id'],
+            $data['artist_id'],
+            $data['cover_image_url'],
+            $data['description']
+        );
+    }
 }
