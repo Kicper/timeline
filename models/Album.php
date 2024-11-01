@@ -58,4 +58,23 @@ class Album
             die("Error: Could not insert album. " . $errorInfo[2]);
         }
     }
+
+    public function updateAlbum($id, $data)
+    {
+        $query = "UPDATE " . $this->table_name . "
+                SET title = :title, release_date = :release_date, genre_id = :genre_id, artist_id = :artist_id, 
+                    cover_image_url = :cover_image_url, description = :description
+                WHERE id = :id";
+
+        $stmt = $this->conn->prepare($query);
+        return $stmt->execute([
+            ':id' => $id,
+            ':title' => $data['title'],
+            ':release_date' => $data['release_date'],
+            ':genre_id' => $data['genre_id'],
+            ':artist_id' => $data['artist_id'],
+            ':cover_image_url' => $data['cover_image_url'],
+            ':description' => $data['description']
+        ]);
+    }
 }

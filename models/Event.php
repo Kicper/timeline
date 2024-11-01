@@ -62,4 +62,23 @@ class Event
             die("Error: Could not insert event. " . $errorInfo[2]);
         }
     }
+
+    public function updateEvent($id, $data)
+    {
+        $query = "UPDATE " . $this->table_name . "
+                SET name = :name, description = :description, start_date = :start_date, end_date = :end_date, 
+                    image_url = :image_url, genre_id = :genre_id
+                WHERE id = :id";
+
+        $stmt = $this->conn->prepare($query);
+        return $stmt->execute([
+            ':id' => $id,
+            ':name' => $data['name'],
+            ':description' => $data['description'],
+            ':start_date' => $data['start_date'],
+            ':end_date' => $data['end_date'],
+            ':image_url' => $data['image_url'],
+            ':genre_id' => $data['genre_id']
+        ]);
+    }
 }

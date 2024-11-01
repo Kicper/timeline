@@ -63,6 +63,47 @@ switch ($action) {
         }
         break;
 
+    case 'editEvent':
+        session_start();
+        if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
+            header('Location: index.php?action=login');
+            exit();
+        }
+
+        $eventId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+        $eventController = new EventController($db);
+        $event = $eventController->getEventById($eventId);
+        require __DIR__ . '/views/edit_event_view.php';
+        break;
+
+    case 'updateEvent':
+        session_start();
+        if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
+            header('Location: index.php?action=login');
+            exit();
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
+            $eventId = (int)$_GET['id'];
+            $eventData = [
+                'name' => $_POST['name'],
+                'description' => $_POST['description'],
+                'start_date' => $_POST['start_date'],
+                'end_date' => $_POST['end_date'],
+                'image_url' => $_POST['image_url'],
+                'genre_id' => $_POST['genre_id']
+            ];
+
+            $eventController = new EventController($db);
+            if ($eventController->updateEvent($eventId, $eventData)) {
+                header("Location: index.php?action=showEvent&id=" . $eventId);
+                exit();
+            } else {
+                echo "Error updating event.";
+            }
+        }
+        break;
+
     case 'createArtist':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $artistController = new ArtistController($db);
@@ -80,6 +121,47 @@ switch ($action) {
         }
         break;
 
+    case 'editArtist':
+        session_start();
+        if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
+            header('Location: index.php?action=login');
+            exit();
+        }
+
+        $artistId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+        $artistController = new ArtistController($db);
+        $artist = $artistController->getArtistById($artistId);
+        require __DIR__ . '/views/edit_artist_view.php';
+        break;
+
+    case 'updateArtist':
+        session_start();
+        if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
+            header('Location: index.php?action=login');
+            exit();
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
+            $artistId = (int)$_GET['id'];
+            $artistData = [
+                'name' => $_POST['name'],
+                'bio' => $_POST['bio'],
+                'birth_date' => $_POST['birth_date'],
+                'death_date' => $_POST['death_date'],
+                'genre' => $_POST['genre'],
+                'image_url' => $_POST['image_url']
+            ];
+
+            $artistController = new ArtistController($db);
+            if ($artistController->updateArtist($artistId, $artistData)) {
+                header("Location: index.php?action=showArtist&id=" . $artistId);
+                exit();
+            } else {
+                echo "Error updating artist.";
+            }
+        }
+        break;
+
     case 'createAlbum':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $albumController = new AlbumController($db);
@@ -94,6 +176,47 @@ switch ($action) {
             }
         } else {
             require __DIR__ . '/views/create_album_view.php';
+        }
+        break;
+
+    case 'editAlbum':
+        session_start();
+        if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
+            header('Location: index.php?action=login');
+            exit();
+        }
+
+        $albumId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+        $albumController = new AlbumController($db);
+        $album = $albumController->getAlbumById($albumId);
+        require __DIR__ . '/views/edit_album_view.php';
+        break;
+
+    case 'updateAlbum':
+        session_start();
+        if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
+            header('Location: index.php?action=login');
+            exit();
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
+            $albumId = (int)$_GET['id'];
+            $albumData = [
+                'title' => $_POST['title'],
+                'release_date' => $_POST['release_date'],
+                'genre_id' => $_POST['genre_id'],
+                'artist_id' => $_POST['artist_id'],
+                'cover_image_url' => $_POST['cover_image_url'],
+                'description' => $_POST['description']
+            ];
+
+            $albumController = new AlbumController($db);
+            if ($albumController->updateAlbum($albumId, $albumData)) {
+                header("Location: index.php?action=showAlbum&id=" . $albumId);
+                exit();
+            } else {
+                echo "Error updating album.";
+            }
         }
         break;
 
@@ -138,6 +261,27 @@ switch ($action) {
             require __DIR__ . '/views/event_view.php';
         } else {
             echo "Event not found.";
+        }
+        break;
+
+    case 'updateGenreColor':
+        session_start();
+        if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
+            header('Location: index.php?action=login');
+            exit();
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id']) && isset($_POST['color'])) {
+            $genreId = (int)$_GET['id'];
+            $newColor = $_POST['color'];
+            $genreController = new GenreController($db);
+
+            if ($genreController->updateGenreColor($genreId, $newColor)) {
+                header("Location: index.php?action=showGenre&id=" . $genreId);
+                exit();
+            } else {
+                echo "Error updating color.";
+            }
         }
         break;
 

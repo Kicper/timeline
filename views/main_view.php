@@ -423,7 +423,6 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
                 album.style.display = showAlbums ? 'block' : 'none';
             });
 
-            // Toggle visibility of artists based on checkbox state
             document.querySelectorAll('.artist').forEach(artist => {
                 artist.style.display = showArtists ? 'block' : 'none';
             });

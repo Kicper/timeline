@@ -42,4 +42,10 @@ class ArtistController
             $data['image_url']
         );
     }
+
+    public function updateArtist($id, $data)
+    {
+        $artist = new Artist($this->conn);
+        return $artist->updateArtist($id, $data);
+    }
 }

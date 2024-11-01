@@ -71,6 +71,10 @@ $genres = $genreController->getAllGenres();
             appearance: none;
         }
 
+        textarea {
+            resize: none;
+        }
+
         select {
             background-color: #f9f9f9;
             color: #333;
