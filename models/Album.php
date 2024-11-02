@@ -85,7 +85,7 @@ class Album
         $stmt->bindParam(':id', $albumId, PDO::PARAM_INT);
         if (!$stmt->execute()) {
             $errorInfo = $stmt->errorInfo();
-            echo "Error deleting album: " . $errorInfo[2];  // Show detailed error message
+            echo "Error deleting album: " . $errorInfo[2];
             return false;
         }
         return true;

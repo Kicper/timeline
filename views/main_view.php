@@ -216,6 +216,23 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
             font-size: 0.8em;
             color: #000;
         }
+
+        @media print {
+
+            .login-button,
+            .password-button,
+            .dropdown,
+            .filter-container {
+                display: none;
+            }
+
+            body {
+                color: black;
+                background-color: white;
+                padding: 0;
+                margin: 0;
+            }
+        }
     </style>
 </head>
 
@@ -277,8 +294,8 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
     </div>
 
     <?php
-    $globalMinYear = date('Y');
-    $globalMaxYear = 1900;
+    $globalMinYear = 1900;
+    $globalMaxYear = 2000;
     $genreItems = [];
 
     foreach ($genreData as $genre) {
@@ -330,26 +347,27 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
         foreach ($albumItems as $album) {
             $startYear = (int) date('Y', strtotime($album['release_date']));
             $endYear = $startYear;
-            $items[] = ['name' => htmlspecialchars($album['title']), 'type' => 'album', 'startYear' => $startYear, 'endYear' => $endYear];
+            $items[] = ['id' => $album['id'], 'name' => htmlspecialchars($album['title']), 'type' => 'album', 'startYear' => $startYear, 'endYear' => $endYear];
         }
 
         foreach ($artistItems as $artist) {
             $startYear = (int) date('Y', strtotime($artist['birth_date']));
             $endYear = $artist['death_date'] ? (int) date('Y', strtotime($artist['death_date'])) : date('Y');
-            $items[] = ['name' => htmlspecialchars($artist['name']), 'type' => 'artist', 'startYear' => $startYear, 'endYear' => $endYear];
+            $items[] = ['id' => $artist['id'], 'name' => htmlspecialchars($artist['name']), 'type' => 'artist', 'startYear' => $startYear, 'endYear' => $endYear];
         }
 
         foreach ($eventItems as $event) {
             $startYear = (int) date('Y', strtotime($event['start_date']));
             $endYear = $event['end_date'] ? (int) date('Y', strtotime($event['end_date'])) : $startYear;
-            $items[] = ['name' => htmlspecialchars($event['name']), 'type' => 'event', 'startYear' => $startYear, 'endYear' => $endYear];
+            $items[] = ['id' => $event['id'], 'name' => htmlspecialchars($event['name']), 'type' => 'event', 'startYear' => $startYear, 'endYear' => $endYear];
         }
 
         foreach ($items as &$item) {
             $startYear = $item['startYear'];
             $endYear = $item['endYear'];
             $item['leftPosition'] = (($startYear - $globalMinYear) / ($globalMaxYear - $globalMinYear)) * 100;
-            $item['width'] = (($endYear - $startYear) / ($globalMaxYear - $globalMinYear)) * 100;
+            $yearSpan = max($endYear - $startYear, 1);
+            $item['width'] = ($yearSpan / ($globalMaxYear - $globalMinYear)) * 100;
 
             $row = 0;
             while (isset($rows[$row])) {
@@ -378,17 +396,18 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
                         $width = $item['type'] == 'album' ? '20px' : ($item['width'] . '%');
                         $topOffset = $item['row'] * 22;
                         $itemClass = strtolower($item['type']);
+                        $itemName = htmlspecialchars($item['name']);
                     ?>
                         <div class="<?= $itemClass ?>" style="left: <?= $leftPosition ?>%; width: <?= $width ?>; height: 20px; top: <?= $topOffset ?>px; cursor: pointer;">
                             <?php if ($itemClass == 'album'): ?>
-                                <a href="index.php?action=showAlbum&id=<?= urlencode($album['id']) ?><?= htmlspecialchars($album['title']) ?>"
+                                <a href="index.php?action=showAlbum&id=<?= urlencode($item['id']) ?>" title="<?= $itemName ?>"
                                     style="display: block; height: 100%; width: 100%; border-radius: 50%; background-color: black;"></a>
                             <?php elseif ($itemClass == 'artist'): ?>
-                                <a href="index.php?action=showArtist&id=<?= urlencode($artist['id']) ?><?= htmlspecialchars($artist['name']) ?>"
+                                <a href="index.php?action=showArtist&id=<?= urlencode($item['id']) ?><?= htmlspecialchars($item['name']) ?>" title="<?= $itemName ?>"
                                     style="display: flex; align-items: center; justify-content: center; height: 100%; width: 100%; background-color: rgba(0, 0, 0, 0.2); text-decoration: none;
                             color: black;"><?= htmlspecialchars($item['name']) ?></a>
                             <?php elseif ($itemClass == 'event'): ?>
-                                <a href="index.php?action=showEvent&id=<?= urlencode($event['id']) ?><?= htmlspecialchars($event['name']) ?>"
+                                <a href="index.php?action=showEvent&id=<?= urlencode($item['id']) ?>" title="<?= $itemName ?>"
                                     style="display: block; height: 100%; width: 100%; background-color: white;"></a>
                             <?php endif; ?>
                         </div>
