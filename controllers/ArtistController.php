@@ -48,4 +48,10 @@ class ArtistController
         $artist = new Artist($this->conn);
         return $artist->updateArtist($id, $data);
     }
+
+    public function deleteArtist($artistId)
+    {
+        $artist = new Artist($this->conn);
+        return $artist->deleteArtist($artistId);
+    }
 }

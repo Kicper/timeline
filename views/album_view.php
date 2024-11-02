@@ -90,6 +90,13 @@ session_start();
             background-color: #218838;
         }
     </style>
+    <script>
+        function confirmDelete(albumId) {
+            if (confirm("Are you sure you want to delete this album?")) {
+                window.location.href = "index.php?action=deleteAlbum&id=" + albumId;
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -114,6 +121,7 @@ session_start();
             <a href="index.php?action=editAlbum&id=<?= htmlspecialchars($album['id']) ?>">
                 <button class="edit-button">Edit</button>
             </a>
+            <button class="edit-button" onclick="confirmDelete(<?= htmlspecialchars($album['id']) ?>)">Delete Album</button>
         </div>
     <?php endif; ?>
 </body>

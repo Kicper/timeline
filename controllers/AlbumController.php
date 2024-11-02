@@ -41,4 +41,10 @@ class AlbumController
         $album = new Album($this->conn);
         return $album->updateAlbum($id, $data);
     }
+
+    public function deleteAlbum($albumId)
+    {
+        $album = new Album($this->conn);
+        return $album->deleteAlbum($albumId);
+    }
 }

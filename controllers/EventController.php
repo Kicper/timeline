@@ -41,4 +41,10 @@ class EventController
         $event = new Event($this->conn);
         return $event->updateEvent($id, $data);
     }
+
+    public function deleteEvent($eventId)
+    {
+        $event = new Event($this->conn);
+        return $event->deleteEvent($eventId);
+    }
 }

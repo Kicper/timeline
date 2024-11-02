@@ -90,6 +90,13 @@ session_start();
             background-color: #218838;
         }
     </style>
+    <script>
+        function confirmDelete(eventId) {
+            if (confirm("Are you sure you want to delete this event?")) {
+                window.location.href = "index.php?action=deleteEvent&id=" + eventId;
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -115,6 +122,7 @@ session_start();
             <a href="index.php?action=editEvent&id=<?= htmlspecialchars($event['id']) ?>">
                 <button class="edit-button">Edit</button>
             </a>
+            <button class="edit-button" onclick="confirmDelete(<?= htmlspecialchars($event['id']) ?>)">Delete Event</button>
         </div>
     <?php endif; ?>
 </body>

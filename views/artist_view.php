@@ -90,6 +90,13 @@ session_start();
             background-color: #218838;
         }
     </style>
+    <script>
+        function confirmDelete(artistId) {
+            if (confirm("Are you sure you want to delete this artist?")) {
+                window.location.href = "index.php?action=deleteArtist&id=" + artistId;
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -117,6 +124,7 @@ session_start();
             <a href="index.php?action=editArtist&id=<?= htmlspecialchars($artist['id']) ?>">
                 <button class="edit-button">Edit</button>
             </a>
+            <button class="edit-button" onclick="confirmDelete(<?= htmlspecialchars($artist['id']) ?>)">Delete Artist</button>
         </div>
     <?php endif; ?>
 </body>

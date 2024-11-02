@@ -81,4 +81,17 @@ class Event
             ':genre_id' => $data['genre_id']
         ]);
     }
+
+    public function deleteEvent($eventId)
+    {
+        $query = "DELETE FROM " . $this->table_name . " WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $eventId, PDO::PARAM_INT);
+        if (!$stmt->execute()) {
+            $errorInfo = $stmt->errorInfo();
+            echo "Error deleting event: " . $errorInfo[2];
+            return false;
+        }
+        return true;
+    }
 }

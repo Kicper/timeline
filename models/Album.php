@@ -77,4 +77,17 @@ class Album
             ':description' => $data['description']
         ]);
     }
+
+    public function deleteAlbum($albumId)
+    {
+        $query = "DELETE FROM " . $this->table_name . " WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $albumId, PDO::PARAM_INT);
+        if (!$stmt->execute()) {
+            $errorInfo = $stmt->errorInfo();
+            echo "Error deleting album: " . $errorInfo[2];  // Show detailed error message
+            return false;
+        }
+        return true;
+    }
 }

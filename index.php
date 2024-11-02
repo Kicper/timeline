@@ -104,6 +104,24 @@ switch ($action) {
         }
         break;
 
+    case 'deleteEvent':
+        session_start();
+        if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] && isset($_GET['id'])) {
+            $eventId = (int)$_GET['id'];
+            $eventController = new EventController($db);
+            if ($eventController->deleteEvent($eventId)) {
+                header('Location: index.php');
+                exit();
+            } else {
+                echo "Error deleting event.";
+            }
+        } else {
+            echo "Not logged in or no event ID.";
+            header('Location: index.php?action=login');
+            exit();
+        }
+        break;
+
     case 'createArtist':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $artistController = new ArtistController($db);
@@ -162,6 +180,24 @@ switch ($action) {
         }
         break;
 
+    case 'deleteArtist':
+        session_start();
+        if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] && isset($_GET['id'])) {
+            $artistId = (int)$_GET['id'];
+            $artistController = new ArtistController($db);
+            if ($artistController->deleteArtist($artistId)) {
+                header('Location: index.php');
+                exit();
+            } else {
+                echo "Error deleting artist.";
+            }
+        } else {
+            echo "Not logged in or no artist ID.";
+            header('Location: index.php?action=login');
+            exit();
+        }
+        break;
+
     case 'createAlbum':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $albumController = new AlbumController($db);
@@ -217,6 +253,24 @@ switch ($action) {
             } else {
                 echo "Error updating album.";
             }
+        }
+        break;
+
+    case 'deleteAlbum':
+        session_start();
+        if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] && isset($_GET['id'])) {
+            $albumId = (int)$_GET['id'];
+            $albumController = new AlbumController($db);
+            if ($albumController->deleteAlbum($albumId)) {
+                header('Location: index.php');
+                exit();
+            } else {
+                echo "Error deleting album.";
+            }
+        } else {
+            echo "Not logged in or no album ID.";
+            header('Location: index.php?action=login');
+            exit();
         }
         break;
 
