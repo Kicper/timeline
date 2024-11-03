@@ -34,7 +34,7 @@
 
         .genre-icon {
             margin-top: 20px;
-            width: 150px;
+            width: 600px;
             height: auto;
         }
 
@@ -123,7 +123,7 @@
     <h1><?= htmlspecialchars($genre['name']) ?></h1>
     <p class="genre-description"><?= htmlspecialchars($genre['description']) ?></p>
     <?php if (!empty($genre['icon_url'])): ?>
-        <img src="<?= htmlspecialchars($genre['icon_url']) ?>" alt="Genre Icon" class="genre-icon">
+        <img src="<?= htmlspecialchars($genre['icon_url']) ?>" alt="Genre image is unavailable" class="genre-icon">
     <?php endif; ?>
 </body>
 

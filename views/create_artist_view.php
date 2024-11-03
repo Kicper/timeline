@@ -151,7 +151,7 @@ $genres = $genreController->getAllGenres();
     <div class="artist-form">
         <div id="error-message" style="color: red; margin-bottom: 15px;"></div>
 
-        <form action="index.php?action=createArtist" method="POST" onsubmit="return validateForm()">
+        <form action="index.php?action=createArtist" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
             <label for="name">Artist Name:</label>
             <input type="text" id="name" name="name" required>
 
@@ -172,8 +172,8 @@ $genres = $genreController->getAllGenres();
                 <?php endwhile; ?>
             </select>
 
-            <label for="image_url">Image URL:</label>
-            <input type="url" id="image_url" name="image_url" placeholder="https://example.com/image.jpg">
+            <label for="cover_image">Artist Image:</label>
+            <input type="file" id="cover_image" name="cover_image" accept="image/*">
 
             <button type="submit" class="submit-button">Add Artist</button>
         </form>

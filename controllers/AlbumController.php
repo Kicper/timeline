@@ -26,12 +26,26 @@ class AlbumController
     public function createAlbum($data)
     {
         $album = new Album($this->conn);
+
+        $imagePath = '';
+        if (!empty($_FILES['cover_image']['name'])) {
+            $targetDir = __DIR__ . "/../images/";
+            if (!is_dir($targetDir)) {
+                mkdir($targetDir, 0755, true);
+            }
+            $imagePath = $targetDir . basename($_FILES['cover_image']['name']);
+            if (!move_uploaded_file($_FILES['cover_image']['tmp_name'], $imagePath)) {
+                die("Error: Unable to upload cover image.");
+            }
+            $imagePath = "images/" . basename($_FILES['cover_image']['name']);
+        }
+
         return $album->createAlbum(
             $data['title'],
             $data['release_date'],
             $data['genre_id'],
             $data['artist_id'],
-            $data['cover_image_url'],
+            $imagePath,
             $data['description']
         );
     }
@@ -39,6 +53,24 @@ class AlbumController
     public function updateAlbum($id, $data)
     {
         $album = new Album($this->conn);
+        $existingAlbum = $album->getAlbumById($id);
+
+        $imagePath = $existingAlbum['cover_image_url'];
+
+        if (!empty($_FILES['cover_image']['name'])) {
+            $targetDir = __DIR__ . "/../images/";
+            if (!is_dir($targetDir)) {
+                mkdir($targetDir, 0755, true);
+            }
+            $imagePath = $targetDir . basename($_FILES['cover_image']['name']);
+            if (!move_uploaded_file($_FILES['cover_image']['tmp_name'], $imagePath)) {
+                die("Error: Unable to upload cover image.");
+            }
+            $imagePath = "images/" . basename($_FILES['cover_image']['name']);
+        }
+
+        $data['cover_image_url'] = $imagePath;
+
         return $album->updateAlbum($id, $data);
     }
 

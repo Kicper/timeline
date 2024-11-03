@@ -139,7 +139,7 @@ $artists = $artistController->getAllArtists();
     <div class="album-form">
         <div id="error-message" style="color: red; margin-bottom: 15px;"></div>
 
-        <form action="index.php?action=createAlbum" method="POST" onsubmit="return validateForm()">
+        <form action="index.php?action=createAlbum" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
             <label for="title">Album Title:</label>
             <input type="text" id="title" name="title" required>
 
@@ -162,8 +162,8 @@ $artists = $artistController->getAllArtists();
                 <?php endwhile; ?>
             </select>
 
-            <label for="cover_image_url">Image URL:</label>
-            <input type="url" id="cover_image_url" name="cover_image_url" placeholder="https://example.com/image.jpg">
+            <label for="cover_image">Album Cover Image:</label>
+            <input type="file" id="cover_image" name="cover_image" accept="image/*">
 
             <label for="description">Album Description:</label>
             <textarea id="description" name="description" rows="4"></textarea>

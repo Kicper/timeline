@@ -33,7 +33,6 @@ class Event
         $description = $_POST['description'];
         $startDate = $_POST['start_date'];
         $endDate = !empty($_POST['end_date']) ? $_POST['end_date'] : null;
-        $imageUrl = $_POST['image_url'];
         $genreId = $_POST['genre'];
 
         if (empty($name) || empty($startDate) || empty($genreId)) {

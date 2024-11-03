@@ -33,7 +33,6 @@ class Album
         $releaseDate = $_POST['release_date'];
         $genreId = $_POST['genre_id'];
         $artistId = $_POST['artist_id'];
-        $imageUrl = $_POST['cover_image_url'];
         $description = $_POST['description'];
 
         if (empty($title) || empty($releaseDate) || empty($genreId) || empty($artistId)) {

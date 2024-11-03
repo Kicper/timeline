@@ -36,7 +36,7 @@ session_start();
 
         .artist-icon {
             margin-top: 20px;
-            width: 150px;
+            width: 450px;
             height: auto;
         }
 
@@ -106,6 +106,10 @@ session_start();
 
     <h1><?= htmlspecialchars($artist['name']) ?></h1>
 
+    <?php if (!empty($artist['image_url'])): ?>
+        <img src="<?= htmlspecialchars($artist['image_url']) ?>" alt="Artist image is unavailable" class="artist-icon">
+    <?php endif; ?>
+
     <div class="artist-details">
         <p><strong>Date of birth or start of activity:</strong> <?= htmlspecialchars($artist['birth_date']) ?></p>
         <?php if (!empty($artist['death_date'])): ?>
@@ -114,10 +118,6 @@ session_start();
     </div>
 
     <p class="artist-bio"><?= htmlspecialchars($artist['bio']) ?></p>
-
-    <?php if (!empty($artist['image_url'])): ?>
-        <img src="<?= htmlspecialchars($artist['image_url']) ?>" alt="Artist Icon" class="artist-icon">
-    <?php endif; ?>
 
     <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
         <div class="top-left-corner">

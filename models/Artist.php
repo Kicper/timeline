@@ -42,7 +42,6 @@ class Artist
         $birthDate = $_POST['birth_date'];
         $deathDate = !empty($_POST['death_date']) ? $_POST['death_date'] : null;
         $genreId = $_POST['genre'];
-        $imageUrl = $_POST['image_url'];
 
         if (empty($name) || empty($birthDate) || empty($genreId)) {
             die("Error: Artist name, birth date and genre are required fields.");

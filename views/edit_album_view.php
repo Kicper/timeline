@@ -119,7 +119,7 @@ $artists = $artistController->getAllArtists();
 
 <body>
     <h1>Edit Album Details</h1>
-    <form action="index.php?action=updateAlbum&id=<?= htmlspecialchars($album['id']) ?>" method="post">
+    <form action="index.php?action=updateAlbum&id=<?= htmlspecialchars($album['id']) ?>" method="post" enctype="multipart/form-data">
         <label for="title">Album Title:</label>
         <input type="text" id="title" name="title" value="<?= htmlspecialchars($album['title']) ?>" required>
 
@@ -140,14 +140,14 @@ $artists = $artistController->getAllArtists();
         <select id="artist_id" name="artist_id" required>
             <option value="" disabled selected>Select an artist</option>
             <?php while ($artist = $artists->fetch(PDO::FETCH_ASSOC)): ?>
-                <option value="<?= htmlspecialchars($album['id']) ?>" <?= $album['artist_id'] == $album['id'] ? 'selected' : '' ?>>
+                <option value="<?= htmlspecialchars($artist['id']) ?>" <?= $album['artist_id'] == $album['id'] ? 'selected' : '' ?>>
                     <?= htmlspecialchars($artist['name']) ?>
                 </option>
             <?php endwhile; ?>
         </select>
 
-        <label for="cover_image_url">Image URL:</label>
-        <input type="text" id="cover_image_url" name="cover_image_url" value="<?= htmlspecialchars($album['cover_image_url']) ?>">
+        <label for="cover_image">Album Cover Image:</label>
+        <input type="file" id="cover_image" name="cover_image" accept="image/*">
 
         <label for="description">Description:</label>
         <textarea id="description" name="description" rows="4"><?= htmlspecialchars($album['description']) ?></textarea>

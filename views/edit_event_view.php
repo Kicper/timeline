@@ -117,7 +117,7 @@ $genres = $genreController->getAllGenres();
 
 <body>
     <h1>Edit Event Details</h1>
-    <form action="index.php?action=updateEvent&id=<?= htmlspecialchars($event['id']) ?>" method="post">
+    <form action="index.php?action=updateEvent&id=<?= htmlspecialchars($event['id']) ?>" method="post" enctype="multipart/form-data">
         <label for="name">Event Title:</label>
         <input type="text" id="name" name="name" value="<?= htmlspecialchars($event['name']) ?>" required>
 
@@ -130,8 +130,8 @@ $genres = $genreController->getAllGenres();
         <label for="end_date">End Date:</label>
         <input type="date" id="end_date" name="end_date" value="<?= htmlspecialchars($event['end_date']) ?>">
 
-        <label for="image_url">Image URL:</label>
-        <input type="text" id="image_url" name="image_url" value="<?= htmlspecialchars($event['image_url']) ?>">
+        <label for="cover_image">Event Image:</label>
+        <input type="file" id="cover_image" name="cover_image" accept="image/*">
 
         <label for="genres">Genre:</label>
         <select id="genre_id" name="genre_id" required>

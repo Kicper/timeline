@@ -36,7 +36,7 @@ session_start();
 
         .event-icon {
             margin-top: 20px;
-            width: 150px;
+            width: 450px;
             height: auto;
         }
 
@@ -106,16 +106,16 @@ session_start();
 
     <h1><?= htmlspecialchars($event['name']) ?></h1>
 
+    <?php if (!empty($event['image_url'])): ?>
+        <img src="<?= htmlspecialchars($event['image_url']) ?>" alt="Event image is unavailable" class="event-icon">
+    <?php endif; ?>
+
     <div class="event-details">
         <p><strong>Start date of an event:</strong> <?= htmlspecialchars($event['start_date']) ?></p>
         <p><strong>End date of an event:</strong> <?= htmlspecialchars($event['end_date']) ?></p>
     </div>
 
     <p class="event-description"><?= htmlspecialchars($event['description']) ?></p>
-
-    <?php if (!empty($event['image_url'])): ?>
-        <img src="<?= htmlspecialchars($event['image_url']) ?>" alt="Event Icon" class="event-icon">
-    <?php endif; ?>
 
     <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
         <div class="top-left-corner">

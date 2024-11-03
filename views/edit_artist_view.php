@@ -117,7 +117,7 @@ $genres = $genreController->getAllGenres();
 
 <body>
     <h1>Edit Artist Details</h1>
-    <form action="index.php?action=updateArtist&id=<?= htmlspecialchars($artist['id']) ?>" method="post">
+    <form action="index.php?action=updateArtist&id=<?= htmlspecialchars($artist['id']) ?>" method="post" enctype="multipart/form-data">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" value="<?= htmlspecialchars($artist['name']) ?>" required>
 
@@ -140,8 +140,8 @@ $genres = $genreController->getAllGenres();
             <?php endwhile; ?>
         </select>
 
-        <label for="image_url">Image URL:</label>
-        <input type="text" id="image_url" name="image_url" value="<?= htmlspecialchars($artist['image_url']) ?>">
+        <label for="cover_image">Artist Image:</label>
+        <input type="file" id="cover_image" name="cover_image" accept="image/*">
 
         <div class="button-container">
             <button type="submit" class="save-button">Save</button>

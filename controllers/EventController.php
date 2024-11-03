@@ -26,12 +26,25 @@ class EventController
     public function createEvent($data)
     {
         $event = new Event($this->conn);
+
+        $imagePath = '';
+        if (!empty($_FILES['cover_image']['name'])) {
+            $targetDir = __DIR__ . "/../images/";
+            if (!is_dir($targetDir)) {
+                mkdir($targetDir, 0755, true);
+            }
+            $imagePath = $targetDir . basename($_FILES['cover_image']['name']);
+            if (!move_uploaded_file($_FILES['cover_image']['tmp_name'], $imagePath)) {
+                die("Error: Unable to upload cover image.");
+            }
+            $imagePath = "images/" . basename($_FILES['cover_image']['name']);
+        }
         return $event->createEvent(
             $data['name'],
             $data['description'],
             $data['start_date'],
             $data['end_date'],
-            $data['image_url'],
+            $imagePath,
             $data['genre']
         );
     }
@@ -39,6 +52,24 @@ class EventController
     public function updateEvent($id, $data)
     {
         $event = new Event($this->conn);
+        $existingEvent = $event->getEventById($id);
+
+        $imagePath = $existingEvent['image_url'];
+
+        if (!empty($_FILES['cover_image']['name'])) {
+            $targetDir = __DIR__ . "/../images/";
+            if (!is_dir($targetDir)) {
+                mkdir($targetDir, 0755, true);
+            }
+            $imagePath = $targetDir . basename($_FILES['cover_image']['name']);
+            if (!move_uploaded_file($_FILES['cover_image']['tmp_name'], $imagePath)) {
+                die("Error: Unable to upload cover image.");
+            }
+            $imagePath = "images/" . basename($_FILES['cover_image']['name']);
+        }
+
+        $data['image_url'] = $imagePath;
+
         return $event->updateEvent($id, $data);
     }
 

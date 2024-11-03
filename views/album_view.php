@@ -36,7 +36,7 @@ session_start();
 
         .album-icon {
             margin-top: 20px;
-            width: 150px;
+            width: 450px;
             height: auto;
         }
 
@@ -106,15 +106,15 @@ session_start();
 
     <h1><?= htmlspecialchars($album['title']) ?></h1>
 
+    <?php if (!empty($album['cover_image_url'])): ?>
+        <img src="<?= htmlspecialchars($album['cover_image_url']) ?>" alt="Album cover is unavailable" class="album-icon">
+    <?php endif; ?>
+
     <div class="album-details">
         <p><strong>Release date of an album:</strong> <?= htmlspecialchars($album['release_date']) ?></p>
     </div>
 
     <p class="album-description"><?= htmlspecialchars($album['description']) ?></p>
-
-    <?php if (!empty($album['cover_image_url'])): ?>
-        <img src="<?= htmlspecialchars($album['cover_image_url']) ?>" alt="Album Icon" class="album-icon">
-    <?php endif; ?>
 
     <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
         <div class="top-left-corner">
