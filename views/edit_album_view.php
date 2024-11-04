@@ -69,6 +69,17 @@ $artists = $artistController->getAllArtists();
             color: #333;
         }
 
+        input[type="file"]::-webkit-file-upload-button {
+            background-color: #007bff;
+            margin: 10px 0 20px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
         textarea {
             resize: none;
         }
@@ -146,8 +157,8 @@ $artists = $artistController->getAllArtists();
             <?php endwhile; ?>
         </select>
 
-        <label for="cover_image">Album Cover Image:</label>
-        <input type="file" id="cover_image" name="cover_image" accept="image/*">
+        <label for="image_url">Album Cover Image:</label>
+        <input type="file" id="image_url" name="image_url" accept="image/*">
 
         <label for="description">Description:</label>
         <textarea id="description" name="description" rows="4"><?= htmlspecialchars($album['description']) ?></textarea>

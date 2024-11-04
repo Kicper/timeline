@@ -73,6 +73,17 @@ $artists = $artistController->getAllArtists();
             appearance: none;
         }
 
+        input[type="file"]::-webkit-file-upload-button {
+            background-color: #007bff;
+            margin: 10px 0 20px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
         textarea {
             resize: none;
         }

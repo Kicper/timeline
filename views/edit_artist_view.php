@@ -67,6 +67,17 @@ $genres = $genreController->getAllGenres();
             color: #333;
         }
 
+        input[type="file"]::-webkit-file-upload-button {
+            background-color: #007bff;
+            margin: 10px 0 20px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
         textarea {
             resize: none;
         }
@@ -140,8 +151,8 @@ $genres = $genreController->getAllGenres();
             <?php endwhile; ?>
         </select>
 
-        <label for="cover_image">Artist Image:</label>
-        <input type="file" id="cover_image" name="cover_image" accept="image/*">
+        <label for="image_url">Artist Image:</label>
+        <input type="file" id="image_url" name="image_url" accept="image/*">
 
         <div class="button-container">
             <button type="submit" class="save-button">Save</button>

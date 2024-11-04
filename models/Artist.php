@@ -72,6 +72,14 @@ class Artist
 
     public function updateArtist($id, $data)
     {
+        if (empty($data['name']) || empty($data['birth_date']) || empty($data['genre'])) {
+            die("Error: Artist name, birth date and genre are required fields.");
+        }
+
+        if ($data['death_date'] && $data['birth_date'] > $data['death_date']) {
+            die("Error: Birth date must be earlier than death date.");
+        }
+
         $query = "UPDATE " . $this->table_name . "
             SET name = :name, bio = :bio, birth_date = :birth_date, death_date = :death_date, 
                 genre_id = :genre_id, image_url = :image_url

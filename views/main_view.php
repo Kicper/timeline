@@ -14,7 +14,10 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            background-image: url('/music_timeline/images/background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             color: #333;
             padding: 40px 10px;
             text-align: center;
@@ -150,16 +153,31 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
         .genre-container {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
         }
 
         .genre-name {
-            width: 10%;
+            width: 15%;
+            margin-right: 20px;
+        }
+
+        .genre-name button {
+            width: 100%;
+            /* Make the button fill the container */
+            padding: 10px 15px;
             font-weight: bold;
-            font-size: 2em;
-            color: black;
-            padding-left: 10px;
-            text-align: left;
+            font-size: 1.8em;
+            color: white;
+            background-color: #007bff;
+            border: 2px solid #0056b3;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .genre-name button:hover {
+            background-color: #0056b3;
         }
 
         .genre-pool-container {
@@ -213,8 +231,9 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
             display: flex;
             justify-content: space-between;
             margin-top: 5px;
-            font-size: 0.8em;
+            font-size: 0.9em;
             color: #000;
+            font-weight: bold;
         }
 
         @media print {
@@ -387,7 +406,11 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
 
         <div class="genre-container">
             <div class="genre-name">
-                <a href="index.php?action=showGenre&id=<?= urlencode($genre['id']) ?>"><?= htmlspecialchars($genre['name']) ?></a>
+                <form action="index.php" method="get">
+                    <input type="hidden" name="action" value="showGenre">
+                    <input type="hidden" name="id" value="<?= urlencode($genre['id']) ?>">
+                    <button type="submit"><?= htmlspecialchars($genre['name']) ?></button>
+                </form>
             </div>
             <div class="genre-pool-container">
                 <div class="genre-pool" style="background-color: <?= $genreColor ?>;">

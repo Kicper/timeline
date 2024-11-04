@@ -64,6 +64,14 @@ class Event
 
     public function updateEvent($id, $data)
     {
+        if (empty($data['name']) || empty($data['start_date']) || empty($data['genre_id'])) {
+            die("Error: Event name, start date and genre are required fields.");
+        }
+
+        if ($data['end_date'] && $data['start_date'] > $data['end_date']) {
+            die("Error: Start date must be earlier than end date.");
+        }
+
         $query = "UPDATE " . $this->table_name . "
                 SET name = :name, description = :description, start_date = :start_date, end_date = :end_date, 
                     image_url = :image_url, genre_id = :genre_id
