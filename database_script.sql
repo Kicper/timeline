@@ -1,6 +1,6 @@
 -- Create the database (if it doesn't already exist)
-CREATE DATABASE IF NOT EXISTS music_history;
-USE music_history;
+CREATE DATABASE IF NOT EXISTS kicper;
+USE kicper;
 
 
 -- Drop all the tables (if they already exist)
@@ -69,64 +69,64 @@ CREATE TABLE users (
 
 -- 1. Insert a few genres
 INSERT INTO genres (name, description, color, icon_url) VALUES
-('Pop', 'A genre characterized by catchy melodies and mainstream appeal.', '#FF4081', '/music_timeline/images/pop.jpg'),
-('Folk', 'A genre rooted in cultural traditions with storytelling lyrics.', '#FFD54F', '/music_timeline/images/folk.jpg'),
-('Jazz', 'A genre known for its improvisation and complex harmonies.', '#FFEB3B', '/music_timeline/images/jazz.jpg'),
-('Rock', 'A genre characterized by a strong beat and the use of electric guitars.', '#4CAF50', '/music_timeline/images/rock.jpg'),
-('Hip-Hop', 'A genre focused on rhythm, rhyme, and street culture.', '#FF9800', '/music_timeline/images/hiphop.jpg'),
-('Classical', 'A genre relating to the art music of the Western world.', '#3257EF', '/music_timeline/images/classical.jpg');
+('Pop', 'A genre characterized by catchy melodies and mainstream appeal.', '#FF4081', '/images/pop.jpg'),
+('Folk', 'A genre rooted in cultural traditions with storytelling lyrics.', '#FFD54F', '/images/folk.jpg'),
+('Jazz', 'A genre known for its improvisation and complex harmonies.', '#FFEB3B', '/images/jazz.jpg'),
+('Rock', 'A genre characterized by a strong beat and the use of electric guitars.', '#4CAF50', '/images/rock.jpg'),
+('Hip-Hop', 'A genre focused on rhythm, rhyme, and street culture.', '#FF9800', '/images/hiphop.jpg'),
+('Classical', 'A genre relating to the art music of the Western world.', '#3257EF', '/images/classical.jpg');
 
 -- 2. Insert a few artists
 INSERT INTO artists (name, bio, birth_date, death_date, genre_id, image_url) VALUES 
 -- Pop Artists
-('Ed Sheeran', 'English singer-songwriter known for his melodic pop hits.', '1991-02-17', NULL, (SELECT id FROM genres WHERE name='Pop'), '/music_timeline/images/ed_sheeran.jpg'),
-('Dua Lipa', 'British singer and songwriter known for her disco-influenced pop.', '1995-08-22', NULL, (SELECT id FROM genres WHERE name='Pop'), '/music_timeline/images/dua_lipa.jpg'),
-('Michael Jackson', 'American singer, songwriter, and dancer, known as the King of Pop.', '1958-08-29', '2009-06-25', (SELECT id FROM genres WHERE name='Pop'), '/music_timeline/images/michael_jackson.jpg'),
+('Ed Sheeran', 'English singer-songwriter known for his melodic pop hits.', '1991-02-17', NULL, (SELECT id FROM genres WHERE name='Pop'), '/images/ed_sheeran.jpg'),
+('Dua Lipa', 'British singer and songwriter known for her disco-influenced pop.', '1995-08-22', NULL, (SELECT id FROM genres WHERE name='Pop'), '/images/dua_lipa.jpg'),
+('Michael Jackson', 'American singer, songwriter, and dancer, known as the King of Pop.', '1958-08-29', '2009-06-25', (SELECT id FROM genres WHERE name='Pop'), '/images/michael_jackson.jpg'),
 -- Folk Artists
-('Bob Dylan', 'American singer-songwriter known for his influential folk music.', '1941-05-24', NULL, (SELECT id FROM genres WHERE name='Folk'), '/music_timeline/images/bob_dylan.jpg'),
-('The Lumineers', 'American folk band known for their hit single "Ho Hey".', '2005-04-25', NULL, (SELECT id FROM genres WHERE name='Folk'), '/music_timeline/images/the_lumineers.jpg'),
+('Bob Dylan', 'American singer-songwriter known for his influential folk music.', '1941-05-24', NULL, (SELECT id FROM genres WHERE name='Folk'), '/images/bob_dylan.jpg'),
+('The Lumineers', 'American folk band known for their hit single "Ho Hey".', '2005-04-25', NULL, (SELECT id FROM genres WHERE name='Folk'), '/images/the_lumineers.jpg'),
 -- Jazz Artists
-('Miles Davis', 'American jazz trumpeter and composer known for his influential style.', '1926-05-26', '1991-09-28', (SELECT id FROM genres WHERE name='Jazz'), '/music_timeline/images/miles_davis.jpg'),
-('John Coltrane', 'American jazz saxophonist and composer known for his innovative work.', '1926-09-23', '1967-07-17', (SELECT id FROM genres WHERE name='Jazz'), '/music_timeline/images/john_coltrane.jpg'),
-('Louis Armstrong', 'American trumpeter and singer known for his influential jazz style.', '1901-08-04', '1971-07-06', (SELECT id FROM genres WHERE name='Jazz'), '/music_timeline/images/louis_armstrong.jpg'),
+('Miles Davis', 'American jazz trumpeter and composer known for his influential style.', '1926-05-26', '1991-09-28', (SELECT id FROM genres WHERE name='Jazz'), '/images/miles_davis.jpg'),
+('John Coltrane', 'American jazz saxophonist and composer known for his innovative work.', '1926-09-23', '1967-07-17', (SELECT id FROM genres WHERE name='Jazz'), '/images/john_coltrane.jpg'),
+('Louis Armstrong', 'American trumpeter and singer known for his influential jazz style.', '1901-08-04', '1971-07-06', (SELECT id FROM genres WHERE name='Jazz'), '/images/louis_armstrong.jpg'),
 -- Rock Artists
-('Led Zeppelin', 'British rock band known for their heavy sound and complex compositions.', '1968-01-01', NULL, (SELECT id FROM genres WHERE name='Rock'), '/music_timeline/images/led_zeppelin.jpg'),
-('Nirvana', 'American rock band known for bringing grunge music to mainstream.', '1987-01-01', '1994-04-05', (SELECT id FROM genres WHERE name='Rock'), '/music_timeline/images/nirvana.jpg'),
-('Queen', 'British rock band known for their theatrical style and hits like "Bohemian Rhapsody".', '1970-01-01', '1991-11-24', (SELECT id FROM genres WHERE name='Rock'), '/music_timeline/images/queen.jpg'),
+('Led Zeppelin', 'British rock band known for their heavy sound and complex compositions.', '1968-01-01', NULL, (SELECT id FROM genres WHERE name='Rock'), '/images/led_zeppelin.jpg'),
+('Nirvana', 'American rock band known for bringing grunge music to mainstream.', '1987-01-01', '1994-04-05', (SELECT id FROM genres WHERE name='Rock'), '/images/nirvana.jpg'),
+('Queen', 'British rock band known for their theatrical style and hits like "Bohemian Rhapsody".', '1970-01-01', '1991-11-24', (SELECT id FROM genres WHERE name='Rock'), '/images/queen.jpg'),
 -- Hip-Hop Artists
-('Kendrick Lamar', 'American rapper known for his profound lyrics and storytelling.', '1987-06-17', NULL, (SELECT id FROM genres WHERE name='Hip-Hop'), '/music_timeline/images/kendrick_lamar.jpg'),
-('Nicki Minaj', 'Trinidadian-American rapper known for her dynamic flow and versatility.', '1982-12-08', NULL, (SELECT id FROM genres WHERE name='Hip-Hop'), '/music_timeline/images/nicki_minaj.jpg'),
+('Kendrick Lamar', 'American rapper known for his profound lyrics and storytelling.', '1987-06-17', NULL, (SELECT id FROM genres WHERE name='Hip-Hop'), '/images/kendrick_lamar.jpg'),
+('Nicki Minaj', 'Trinidadian-American rapper known for her dynamic flow and versatility.', '1982-12-08', NULL, (SELECT id FROM genres WHERE name='Hip-Hop'), '/images/nicki_minaj.jpg'),
 -- Classical Artists
-('Fryderyk Chopin', 'Polish composer and virtuoso pianist of the Romantic period.', '1810-03-01', '1849-10-17', (SELECT id FROM genres WHERE name='Classical'), '/music_timeline/images/fryderyk_chopin.jpg'),
-('Claude Debussy', 'French composer, considered the first Impressionist composer', '1862-08-22', '1918-03-25', (SELECT id FROM genres WHERE name='Classical'), '/music_timeline/images/claude_debussy.jpg');
+('Fryderyk Chopin', 'Polish composer and virtuoso pianist of the Romantic period.', '1810-03-01', '1849-10-17', (SELECT id FROM genres WHERE name='Classical'), '/images/fryderyk_chopin.jpg'),
+('Claude Debussy', 'French composer, considered the first Impressionist composer', '1862-08-22', '1918-03-25', (SELECT id FROM genres WHERE name='Classical'), '/images/claude_debussy.jpg');
 
 -- 3. Insert a few albums
 INSERT INTO albums (title, release_date, genre_id, artist_id, cover_image_url, description) VALUES 
 -- Pop Albums
-('Divide', '2017-03-03', (SELECT id FROM genres WHERE name='Pop'), (SELECT id FROM artists WHERE name='Ed Sheeran'), '/music_timeline/images/divide_album.jpg', 'Ed Sheeran\'s third studio album with hits like "Shape of You".'),
-('Future Nostalgia', '2020-03-27', (SELECT id FROM genres WHERE name='Pop'), (SELECT id FROM artists WHERE name='Dua Lipa'), '/music_timeline/images/future_nostalgia_album.jpg', 'Dua Lipa\'s second studio album known for its disco influences.'),
+('Divide', '2017-03-03', (SELECT id FROM genres WHERE name='Pop'), (SELECT id FROM artists WHERE name='Ed Sheeran'), '/images/divide_album.jpg', 'Ed Sheeran\'s third studio album with hits like "Shape of You".'),
+('Future Nostalgia', '2020-03-27', (SELECT id FROM genres WHERE name='Pop'), (SELECT id FROM artists WHERE name='Dua Lipa'), '/images/future_nostalgia_album.jpg', 'Dua Lipa\'s second studio album known for its disco influences.'),
 -- Folk Albums
-('Highway 61 Revisited', '1965-08-30', (SELECT id FROM genres WHERE name='Folk'), (SELECT id FROM artists WHERE name='Bob Dylan'), '/music_timeline/images/highway_61_revisited_album.jpg', 'Bob Dylan\'s iconic album featuring "Like a Rolling Stone".'),
-('The Lumineers', '2012-04-03', (SELECT id FROM genres WHERE name='Folk'), (SELECT id FROM artists WHERE name='The Lumineers'), '/music_timeline/images/the_lumineers_album.jpg', 'The Lumineers\' self-titled debut album featuring "Ho Hey".'),
+('Highway 61 Revisited', '1965-08-30', (SELECT id FROM genres WHERE name='Folk'), (SELECT id FROM artists WHERE name='Bob Dylan'), '/images/highway_61_revisited_album.jpg', 'Bob Dylan\'s iconic album featuring "Like a Rolling Stone".'),
+('The Lumineers', '2012-04-03', (SELECT id FROM genres WHERE name='Folk'), (SELECT id FROM artists WHERE name='The Lumineers'), '/images/the_lumineers_album.jpg', 'The Lumineers\' self-titled debut album featuring "Ho Hey".'),
 -- Jazz Albums
-('Kind of Blue', '1959-08-17', (SELECT id FROM genres WHERE name='Jazz'), (SELECT id FROM artists WHERE name='Miles Davis'), '/music_timeline/images/kind_of_blue_album.jpg', 'Miles Davis\'s masterpiece and a landmark jazz album.'),
-('A Love Supreme', '1965-01-01', (SELECT id FROM genres WHERE name='Jazz'), (SELECT id FROM artists WHERE name='John Coltrane'), '/music_timeline/images/a_love_supreme_album.jpg', 'A Love Supreme is John Coltrane\'s spiritual suite in jazz.'),
-('What a Wonderful World', '1967-10-01', (SELECT id FROM genres WHERE name='Jazz'), (SELECT id FROM artists WHERE name='Louis Armstrong'), '/music_timeline/images/what_a_wonderful_world_album.jpg', 'An iconic album featuring Armstrong’s heartfelt performances.'),
+('Kind of Blue', '1959-08-17', (SELECT id FROM genres WHERE name='Jazz'), (SELECT id FROM artists WHERE name='Miles Davis'), '/images/kind_of_blue_album.jpg', 'Miles Davis\'s masterpiece and a landmark jazz album.'),
+('A Love Supreme', '1965-01-01', (SELECT id FROM genres WHERE name='Jazz'), (SELECT id FROM artists WHERE name='John Coltrane'), '/images/a_love_supreme_album.jpg', 'A Love Supreme is John Coltrane\'s spiritual suite in jazz.'),
+('What a Wonderful World', '1967-10-01', (SELECT id FROM genres WHERE name='Jazz'), (SELECT id FROM artists WHERE name='Louis Armstrong'), '/images/what_a_wonderful_world_album.jpg', 'An iconic album featuring Armstrong’s heartfelt performances.'),
 -- Rock Albums
-('IV', '1971-11-08', (SELECT id FROM genres WHERE name='Rock'), (SELECT id FROM artists WHERE name='Led Zeppelin'), '/music_timeline/images/iv_album.jpg', 'Led Zeppelin IV features the classic "Stairway to Heaven".'),
-('Nevermind', '1991-09-24', (SELECT id FROM genres WHERE name='Rock'), (SELECT id FROM artists WHERE name='Nirvana'), '/music_timeline/images/nevermind_album.jpg', 'Nirvana\'s breakthrough album that brought grunge to the mainstream.'),
-('A Night at the Opera', '1975-11-21', (SELECT id FROM genres WHERE name='Rock'), (SELECT id FROM artists WHERE name='Queen'), '/music_timeline/images/a_night_at_the_opera_album.jpg', 'Queen\'s legendary album featuring "Bohemian Rhapsody".'),
+('IV', '1971-11-08', (SELECT id FROM genres WHERE name='Rock'), (SELECT id FROM artists WHERE name='Led Zeppelin'), '/images/iv_album.jpg', 'Led Zeppelin IV features the classic "Stairway to Heaven".'),
+('Nevermind', '1991-09-24', (SELECT id FROM genres WHERE name='Rock'), (SELECT id FROM artists WHERE name='Nirvana'), '/images/nevermind_album.jpg', 'Nirvana\'s breakthrough album that brought grunge to the mainstream.'),
+('A Night at the Opera', '1975-11-21', (SELECT id FROM genres WHERE name='Rock'), (SELECT id FROM artists WHERE name='Queen'), '/images/a_night_at_the_opera_album.jpg', 'Queen\'s legendary album featuring "Bohemian Rhapsody".'),
 -- Hip-Hop Albums
-('To Pimp a Butterfly', '2015-03-15', (SELECT id FROM genres WHERE name='Hip-Hop'), (SELECT id FROM artists WHERE name='Kendrick Lamar'), '/music_timeline/images/to_pimp_a_butterfly_album.jpg', 'Kendrick Lamar\'s critically acclaimed album addressing racial issues.'),
-('The Pinkprint', '2014-12-12', (SELECT id FROM genres WHERE name='Hip-Hop'), (SELECT id FROM artists WHERE name='Nicki Minaj'), '/music_timeline/images/the_pinkprint_album.jpg', 'Nicki Minaj\'s album featuring personal themes and powerful beats.');
+('To Pimp a Butterfly', '2015-03-15', (SELECT id FROM genres WHERE name='Hip-Hop'), (SELECT id FROM artists WHERE name='Kendrick Lamar'), '/images/to_pimp_a_butterfly_album.jpg', 'Kendrick Lamar\'s critically acclaimed album addressing racial issues.'),
+('The Pinkprint', '2014-12-12', (SELECT id FROM genres WHERE name='Hip-Hop'), (SELECT id FROM artists WHERE name='Nicki Minaj'), '/images/the_pinkprint_album.jpg', 'Nicki Minaj\'s album featuring personal themes and powerful beats.');
 
 -- 4. Insert a few events
 INSERT INTO music_events (name, description, start_date, end_date, image_url, genre_id) VALUES
-('Birth of Jazz', 'The genre is widely considered to have originated in New Orleans.', '1895-01-01', '1910-01-01', '/music_timeline/images/birth_of_jazz_event.jpg', (SELECT id FROM genres WHERE name='Jazz')),
-('Woodstock Festival', 'A music festival in 1969 that is remembered as one of the most significant events in the history of rock music.', '1969-08-15', '1969-08-17', '/music_timeline/images/woodstock_festival_event.jpg', (SELECT id FROM genres WHERE name='Rock')),
-('Rise of Hip-Hop', 'The rise of Hip-Hop culture in the 1970s in New York City.', '1973-01-01', '1986-01-01', '/music_timeline/images/rise_of_hiphop_event.jpg', (SELECT id FROM genres WHERE name='Hip-Hop'));
+('Birth of Jazz', 'The genre is widely considered to have originated in New Orleans.', '1895-01-01', '1910-01-01', '/images/birth_of_jazz_event.jpg', (SELECT id FROM genres WHERE name='Jazz')),
+('Woodstock Festival', 'A music festival in 1969 that is remembered as one of the most significant events in the history of rock music.', '1969-08-15', '1969-08-17', '/images/woodstock_festival_event.jpg', (SELECT id FROM genres WHERE name='Rock')),
+('Rise of Hip-Hop', 'The rise of Hip-Hop culture in the 1970s in New York City.', '1973-01-01', '1986-01-01', '/images/rise_of_hiphop_event.jpg', (SELECT id FROM genres WHERE name='Hip-Hop'));
 
 -- 5. Insert a few users
 INSERT INTO users (username, password, role) VALUES
-('admin', '$2y$10$ZRK8UGs13qsdjNWNkEAti.08DA.su7ayzM72qUeLgMQn1oxHvnslW', 'admin'),  -- Replace the hash with a proper hashed password
+('admin', '$2y$10$svBZ5WgQclRZTWuU1oSCduDIIK4QZdaklOm49IYym4tPA1ZnDF4vK', 'admin'),  -- Replace the hash with a proper hashed password
 ('reader', 'reader', 'reader');

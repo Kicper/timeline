@@ -14,7 +14,7 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url('/music_timeline/images/background.jpg');
+            background-image: url('/images/background.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -163,7 +163,6 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
 
         .genre-name button {
             width: 100%;
-            /* Make the button fill the container */
             padding: 10px 15px;
             font-weight: bold;
             font-size: 1.8em;
