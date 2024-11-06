@@ -1,4 +1,6 @@
 <?php
+
+// Include the GenreController and the ArtistController to handle genre-related actions and fetch genre data
 require_once __DIR__ . '/../controllers/GenreController.php';
 $genreController = new GenreController($db);
 $genres = $genreController->getAllGenres();
@@ -14,6 +16,7 @@ $artists = $artistController->getAllArtists();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Album</title>
     <style>
+        /* General styling for the body and html elements */
         body,
         html {
             height: 100%;
@@ -53,6 +56,7 @@ $artists = $artistController->getAllArtists();
             display: block;
         }
 
+        /* Styling for form inputs, select boxes, and text areas */
         input[type="text"],
         input[type="date"],
         select,
@@ -80,6 +84,7 @@ $artists = $artistController->getAllArtists();
             transition: background-color 0.3s ease;
         }
 
+        /* Prevent resizing of the text area */
         textarea {
             resize: none;
         }
@@ -98,6 +103,7 @@ $artists = $artistController->getAllArtists();
             margin-top: 10px;
         }
 
+        /* Styling for buttons */
         button {
             font-size: 1em;
             padding: 10px;
@@ -130,6 +136,7 @@ $artists = $artistController->getAllArtists();
 
 <body>
     <h1>Edit Album Details</h1>
+    <!-- Form to edit the album, with action to update album details -->
     <form action="index.php?action=updateAlbum&id=<?= htmlspecialchars($album['id']) ?>" method="post" enctype="multipart/form-data">
         <label for="title">Album Title:</label>
         <input type="text" id="title" name="title" value="<?= htmlspecialchars($album['title']) ?>" required>

@@ -5,11 +5,13 @@ class AlbumController
 {
     private $conn;
 
+    // Constructor to initialize the database connection for AlbumController
     public function __construct($db)
     {
         $this->conn = $db;
     }
 
+    // Retrieves all albums within a specified genre by genre ID
     public function getAlbumsByGenre($genreId)
     {
         $album = new Album($this->conn);
@@ -17,12 +19,14 @@ class AlbumController
         return $result;
     }
 
+    // Retrieves a single album's details by album ID
     public function getAlbumById($albumId)
     {
         $album = new Album($this->conn);
         return $album->getAlbumById($albumId);
     }
 
+    // Creates a new album record in the database
     public function createAlbum($data)
     {
         $album = new Album($this->conn);
@@ -50,6 +54,7 @@ class AlbumController
         );
     }
 
+    // Updates an existing album's details in the database
     public function updateAlbum($id, $data)
     {
         $album = new Album($this->conn);
@@ -74,6 +79,7 @@ class AlbumController
         return $album->updateAlbum($id, $data);
     }
 
+    // Deletes an album record from the database by album ID
     public function deleteAlbum($albumId)
     {
         $album = new Album($this->conn);

@@ -5,11 +5,13 @@ class EventController
 {
     private $conn;
 
+    // Constructor to initialize the database connection for EventController
     public function __construct($db)
     {
         $this->conn = $db;
     }
 
+    // Retrieves all events within a specified genre by genre ID
     public function getEventsByGenre($genreId)
     {
         $event = new Event($this->conn);
@@ -17,12 +19,14 @@ class EventController
         return $result;
     }
 
+    // Retrieves a single event's details by event ID
     public function getEventById($eventId)
     {
         $event = new Event($this->conn);
         return $event->getEventById($eventId);
     }
 
+    // Creates a new event record in the database
     public function createEvent($data)
     {
         $event = new Event($this->conn);
@@ -49,6 +53,7 @@ class EventController
         );
     }
 
+    // Updates an existing event's details in the database
     public function updateEvent($id, $data)
     {
         $event = new Event($this->conn);
@@ -73,6 +78,7 @@ class EventController
         return $event->updateEvent($id, $data);
     }
 
+    // Deletes an event record from the database by event ID
     public function deleteEvent($eventId)
     {
         $event = new Event($this->conn);

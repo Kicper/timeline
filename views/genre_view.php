@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Genre Details</title>
     <style>
+        /* Global styles for body and html elements */
         body,
         html {
             height: 100%;
@@ -38,6 +39,7 @@
             height: auto;
         }
 
+        /* Styling for the return button */
         .return-button {
             font-size: 1em;
             padding: 10px 20px;
@@ -106,6 +108,7 @@
 </head>
 
 <body>
+    <!-- Top-right corner button to navigate back to the timeline -->
     <div class="top-right-corner">
         <a href="index.php"><button class="return-button">Back to timeline</button></a>
     </div>

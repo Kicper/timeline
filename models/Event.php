@@ -4,11 +4,13 @@ class Event
     private $conn;
     private $table_name = "music_events";
 
+    // Constructor function to initialize the database connection for the Event class
     public function __construct($db)
     {
         $this->conn = $db;
     }
 
+    // Retrieves all events that belong to a specified genre
     public function getEventsByGenre($genreId)
     {
         $query = "SELECT * FROM " . $this->table_name . " WHERE genre_id = :genre_id";
@@ -18,6 +20,7 @@ class Event
         return $stmt;
     }
 
+    // Retrieves a single event by its unique ID
     public function getEventById($eventId)
     {
         $query = "SELECT * FROM " . $this->table_name . " WHERE id = :id";
@@ -27,6 +30,7 @@ class Event
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    // Inserts a new event into the database with specified details
     public function createEvent($name, $description, $startDate, $endDate, $imageUrl, $genreId)
     {
         $name = $_POST['name'];
@@ -62,6 +66,7 @@ class Event
         }
     }
 
+    // Updates an existing event's details in the database
     public function updateEvent($id, $data)
     {
         if (empty($data['name']) || empty($data['start_date']) || empty($data['genre_id'])) {
@@ -89,6 +94,7 @@ class Event
         ]);
     }
 
+    // Deletes an event from the database based on its ID
     public function deleteEvent($eventId)
     {
         $query = "DELETE FROM " . $this->table_name . " WHERE id = :id";

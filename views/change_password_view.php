@@ -12,6 +12,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Change Password</title>
     <style>
+        /* Global styling for body and html elements */
         body,
         html {
             height: 100%;
@@ -43,6 +44,7 @@ if (session_status() === PHP_SESSION_NONE) {
             width: 100%;
         }
 
+        /* Styling for password input fields */
         input[type="password"] {
             width: 100%;
             padding: 10px;
@@ -74,6 +76,7 @@ if (session_status() === PHP_SESSION_NONE) {
             right: 20px;
         }
 
+        /* Styling for error message */
         .message {
             color: red;
             font-size: 1em;
@@ -87,10 +90,12 @@ if (session_status() === PHP_SESSION_NONE) {
 </head>
 
 <body>
+    <!-- Button to return to the timeline, positioned at the top-right corner -->
     <div class="top-right-corner">
         <a href="index.php"><button class="return-button">Return to the Timeline</button></a>
     </div>
 
+    <!-- Main container for the change password form -->
     <div class="container">
         <h1>Change Password</h1>
 

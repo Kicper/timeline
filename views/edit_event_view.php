@@ -12,6 +12,7 @@ $genres = $genreController->getAllGenres();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Event</title>
     <style>
+        /* General styling for the body and html elements */
         body,
         html {
             height: 100%;
@@ -51,6 +52,7 @@ $genres = $genreController->getAllGenres();
             display: block;
         }
 
+        /* Styling for form inputs, select boxes, and text areas */
         input[type="text"],
         input[type="date"],
         select,
@@ -78,6 +80,7 @@ $genres = $genreController->getAllGenres();
             transition: background-color 0.3s ease;
         }
 
+        /* Prevent resizing of the text area */
         textarea {
             resize: none;
         }
@@ -96,6 +99,7 @@ $genres = $genreController->getAllGenres();
             margin-top: 10px;
         }
 
+        /* Styling for buttons */
         button {
             font-size: 1em;
             padding: 10px;
@@ -128,6 +132,7 @@ $genres = $genreController->getAllGenres();
 
 <body>
     <h1>Edit Event Details</h1>
+    <!-- Form to edit the event, with action to update event details -->
     <form action="index.php?action=updateEvent&id=<?= htmlspecialchars($event['id']) ?>" method="post" enctype="multipart/form-data">
         <label for="name">Event Title:</label>
         <input type="text" id="name" name="name" value="<?= htmlspecialchars($event['name']) ?>" required>

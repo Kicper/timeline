@@ -7,6 +7,7 @@ if (!$isLoggedIn) {
     exit();
 }
 
+// Include the GenreController to fetch the necessary data
 require_once __DIR__ . '/../controllers/GenreController.php';
 $genreController = new GenreController($db);
 $genres = $genreController->getAllGenres();
@@ -20,6 +21,7 @@ $genres = $genreController->getAllGenres();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Event</title>
     <style>
+        /* General page styling for layout, font, and colors */
         body,
         html {
             height: 100%;
@@ -39,6 +41,7 @@ $genres = $genreController->getAllGenres();
             color: #333;
         }
 
+        /* Form styling to make it look neat */
         .event-form {
             width: 100%;
             max-width: 500px;
@@ -71,6 +74,7 @@ $genres = $genreController->getAllGenres();
             appearance: none;
         }
 
+        /* Custom styling for the file input button */
         input[type="file"]::-webkit-file-upload-button {
             background-color: #007bff;
             margin: 10px 0 20px;
@@ -82,6 +86,7 @@ $genres = $genreController->getAllGenres();
             transition: background-color 0.3s ease;
         }
 
+        /* Ensure the textarea can't be resized */
         textarea {
             resize: none;
         }
@@ -98,6 +103,7 @@ $genres = $genreController->getAllGenres();
             outline: none;
         }
 
+        /* Styling for the form submission button */
         .submit-button {
             width: 100%;
             font-size: 1.1em;
@@ -114,6 +120,7 @@ $genres = $genreController->getAllGenres();
             background-color: #0056b3;
         }
 
+        /* Styling for the "Back to timeline" button in the top-right corner */
         .return-button {
             font-size: 1em;
             padding: 10px 20px;
@@ -137,6 +144,7 @@ $genres = $genreController->getAllGenres();
         }
     </style>
     <script>
+        // JavaScript function to validate form before submission
         function validateForm() {
             const startDate = document.getElementById('start_date').value;
             const endDate = document.getElementById('end_date').value;
@@ -153,12 +161,14 @@ $genres = $genreController->getAllGenres();
 </head>
 
 <body>
+    <!-- Button to return to the main timeline page, positioned at the top-right corner -->
     <div class="top-right-corner">
         <a href="index.php"><button class="return-button">Back to timeline</button></a>
     </div>
 
     <h1>Create New Event</h1>
 
+    <!-- Event creation form starts here -->
     <div class="event-form">
         <div id="error-message" style="color: red; margin-bottom: 15px;"></div>
 

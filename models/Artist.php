@@ -4,11 +4,13 @@ class Artist
     private $conn;
     private $table_name = "artists";
 
+    // Constructor function to initialize the database connection for the Artist class
     public function __construct($db)
     {
         $this->conn = $db;
     }
 
+    // Retrieves all artists from the database
     public function getAllArtists()
     {
         $query = "SELECT * FROM " . $this->table_name;
@@ -17,6 +19,7 @@ class Artist
         return $stmt;
     }
 
+    // Retrieves all artists that belong to a specified genre
     public function getArtistsByGenre($genreId)
     {
         $query = "SELECT * FROM " . $this->table_name . " WHERE genre_id = :genre_id";
@@ -26,6 +29,7 @@ class Artist
         return $stmt;
     }
 
+    // Retrieves a single artist by its unique ID
     public function getArtistById($artistId)
     {
         $query = "SELECT * FROM " . $this->table_name . " WHERE id = :id";
@@ -35,6 +39,7 @@ class Artist
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    // Inserts a new artist into the database with specified details
     public function createArtist($name, $bio, $birthDate, $deathDate, $genreId, $imageUrl)
     {
         $name = $_POST['name'];
@@ -70,6 +75,7 @@ class Artist
         }
     }
 
+    // Updates an existing artist's details in the database
     public function updateArtist($id, $data)
     {
         if (empty($data['name']) || empty($data['birth_date']) || empty($data['genre'])) {
@@ -97,6 +103,7 @@ class Artist
         ]);
     }
 
+    // Deletes an artist from the database based on its ID
     public function deleteArtist($artistId)
     {
         $query = "DELETE FROM " . $this->table_name . " WHERE id = :id";

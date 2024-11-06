@@ -4,11 +4,13 @@ class Album
     private $conn;
     private $table_name = "albums";
 
+    // Constructor function to initialize the database connection for the Album class
     public function __construct($db)
     {
         $this->conn = $db;
     }
 
+    // Retrieves all albums that belong to a specified genre
     public function getAlbumsByGenre($genreId)
     {
         $query = "SELECT * FROM " . $this->table_name . " WHERE genre_id = :genre_id";
@@ -18,6 +20,7 @@ class Album
         return $stmt;
     }
 
+    // Retrieves a single album by its unique ID
     public function getAlbumById($albumId)
     {
         $query = "SELECT * FROM " . $this->table_name . " WHERE id = :id";
@@ -27,6 +30,7 @@ class Album
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    // Inserts a new album into the database with specified details
     public function createAlbum($title, $releaseDate, $genreId, $artistId, $imageUrl, $description)
     {
         $title = $_POST['title'];
@@ -58,6 +62,7 @@ class Album
         }
     }
 
+    // Updates an existing album's details in the database
     public function updateAlbum($id, $data)
     {
         $query = "UPDATE " . $this->table_name . "
@@ -77,6 +82,7 @@ class Album
         ]);
     }
 
+    // Deletes an album from the database based on its ID
     public function deleteAlbum($albumId)
     {
         $query = "DELETE FROM " . $this->table_name . " WHERE id = :id";

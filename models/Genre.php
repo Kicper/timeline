@@ -4,11 +4,13 @@ class Genre
     private $conn;
     private $table_name = "genres";
 
+    // Constructor function to initialize the database connection for the Genre class
     public function __construct($db)
     {
         $this->conn = $db;
     }
 
+    // Retrieves all genres from the database
     public function getAllGenres()
     {
         $query = "SELECT * FROM " . $this->table_name;
@@ -17,6 +19,7 @@ class Genre
         return $stmt;
     }
 
+    // Retrieves a single genre by its unique ID
     public function getGenreById($genreId)
     {
         $query = "SELECT * FROM " . $this->table_name . " WHERE id = :id";
@@ -26,6 +29,7 @@ class Genre
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    // Updates an existing genre's colour in the database
     public function updateGenreColor($genreId, $color)
     {
         $query = "UPDATE " . $this->table_name . " SET color = :color WHERE id = :id";

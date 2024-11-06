@@ -4,11 +4,13 @@ class User
     private $conn;
     private $table_name = "users";
 
+    // Constructor function to initialize the database connection for the User class
     public function __construct($db)
     {
         $this->conn = $db;
     }
 
+    // Logs in a user by verifying the username and password
     public function login($username, $password)
     {
         $query = "SELECT * FROM " . $this->table_name . " WHERE username = :username";
@@ -23,6 +25,7 @@ class User
         return false;
     }
 
+    // Updates an existing user's password in the database
     public function updatePassword($username, $currentPassword, $newPassword)
     {
         $query = "SELECT * FROM " . $this->table_name . " WHERE username = :username";

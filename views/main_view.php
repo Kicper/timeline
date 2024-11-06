@@ -12,6 +12,7 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Timeline</title>
     <style>
+        /* Basic styles for the body and background */
         body {
             font-family: Arial, sans-serif;
             background-image: url('/images/background.jpg');
@@ -23,6 +24,7 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
             text-align: center;
         }
 
+        /* Style for the filter options container */
         .filter-container {
             position: absolute;
             top: 20px;
@@ -42,6 +44,7 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
             text-align: left;
         }
 
+        /* Style for filter options such as checkboxes */
         .filter-option {
             display: block;
             font-size: 1.2em;
@@ -68,6 +71,7 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
             padding: 20px 0 40px 0;
         }
 
+        /* Styles for the buttons */
         .login-button {
             font-size: 1.2em;
             padding: 10px 20px;
@@ -104,6 +108,7 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
             background-color: #0056b3;
         }
 
+        /* Styles for dropdown menu */
         .dropdown {
             position: absolute;
             top: 10px;
@@ -150,6 +155,7 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
             display: block;
         }
 
+        /* Styles for the genre container */
         .genre-container {
             display: flex;
             align-items: center;
@@ -161,6 +167,7 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
             margin-right: 20px;
         }
 
+        /* Style for the genre buttons */
         .genre-name button {
             width: 100%;
             padding: 10px 15px;
@@ -183,6 +190,7 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
             width: 90%;
         }
 
+        /* Styles for the timeline pool */
         .genre-pool {
             height: 100px;
             width: 100%;
@@ -192,6 +200,7 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
             overflow: hidden;
         }
 
+        /* Styles for items in the pool (album, artist, event) */
         .album,
         .event,
         .artist {
@@ -226,6 +235,7 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
             background-color: rgba(0, 0, 0, 0.2);
         }
 
+        /* Style for the year scale */
         .year-scale {
             display: flex;
             justify-content: space-between;
@@ -235,6 +245,7 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
             font-weight: bold;
         }
 
+        /* Print media styles */
         @media print {
 
             .login-button,
@@ -256,6 +267,7 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
 
 <body>
     <?php if ($isLoggedIn): ?>
+        <!-- Show options for logged in users (create event, change password, logout) -->
         <div class="dropdown">
             <button onclick="toggleDropdown()" class="dropdown-button">Create ▼</button>
             <div id="dropdownContent" class="dropdown-content">
@@ -277,6 +289,7 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
     <?php endif; ?>
 
     <script>
+        // Toggle the dropdown menu for creating items
         function toggleDropdown() {
             document.getElementById("dropdownContent").classList.toggle("show");
         }
@@ -298,6 +311,7 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
 
     <h2>List of Genres</h2>
 
+    <!-- Filter options container -->
     <div class="filter-container">
         <h3 class="filter-title">Filter Options</h3>
         <label class="filter-option">
@@ -316,6 +330,7 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
     $globalMaxYear = 2000;
     $genreItems = [];
 
+    // Loop through each genre and fetch its items (albums, artists, events)
     foreach ($genreData as $genre) {
         $genreName = $genre['name'];
         $albumItems = [];
@@ -380,6 +395,7 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
             $items[] = ['id' => $event['id'], 'name' => htmlspecialchars($event['name']), 'type' => 'event', 'startYear' => $startYear, 'endYear' => $endYear];
         }
 
+        // Loop through all items and calculate their position and width for display
         foreach ($items as &$item) {
             $startYear = $item['startYear'];
             $endYear = $item['endYear'];
@@ -388,6 +404,7 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
             $item['width'] = ($yearSpan / ($globalMaxYear - $globalMinYear)) * 100;
 
             $row = 0;
+            // Check for available rows to avoid overlapping items
             while (isset($rows[$row])) {
                 foreach ($rows[$row] as $range) {
                     if ($startYear <= $range['end'] && $endYear >= $range['start']) {
@@ -403,6 +420,7 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
         unset($item);
     ?>
 
+        <!-- Container for displaying the timeline -->
         <div class="genre-container">
             <div class="genre-name">
                 <form action="index.php" method="get">
@@ -447,6 +465,7 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
     <?php endforeach; ?>
 
     <script>
+        // Attach event listeners to the checkboxes to trigger visibility changes
         document.getElementById("showEvents").addEventListener("change", toggleVisibility);
         document.getElementById("showAlbums").addEventListener("change", toggleVisibility);
         document.getElementById("showArtists").addEventListener("change", toggleVisibility);

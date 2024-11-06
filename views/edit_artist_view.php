@@ -12,6 +12,7 @@ $genres = $genreController->getAllGenres();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Artist</title>
     <style>
+        /* General styling for the body and html elements */
         body,
         html {
             height: 100%;
@@ -51,6 +52,7 @@ $genres = $genreController->getAllGenres();
             display: block;
         }
 
+        /* Styling for form inputs, select boxes, and text areas */
         input[type="text"],
         input[type="date"],
         select,
@@ -78,6 +80,7 @@ $genres = $genreController->getAllGenres();
             transition: background-color 0.3s ease;
         }
 
+        /* Prevent resizing of the text area */
         textarea {
             resize: none;
         }
@@ -96,6 +99,7 @@ $genres = $genreController->getAllGenres();
             margin-top: 10px;
         }
 
+        /* Styling for buttons */
         button {
             font-size: 1em;
             padding: 10px;
@@ -128,6 +132,7 @@ $genres = $genreController->getAllGenres();
 
 <body>
     <h1>Edit Artist Details</h1>
+    <!-- Form to edit the artist, with action to update artist details -->
     <form action="index.php?action=updateArtist&id=<?= htmlspecialchars($artist['id']) ?>" method="post" enctype="multipart/form-data">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" value="<?= htmlspecialchars($artist['name']) ?>" required>

@@ -10,6 +10,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Details</title>
     <style>
+        /* Style for the main layout, font, and color theme */
         body,
         html {
             height: 100%;
@@ -40,6 +41,7 @@ session_start();
             height: auto;
         }
 
+        /* Style for the button to go back to the main page */
         .return-button {
             font-size: 1em;
             padding: 10px 20px;
@@ -56,6 +58,7 @@ session_start();
             background-color: #0056b3;
         }
 
+        /* Position styling for elements */
         .top-right-corner {
             position: absolute;
             top: 10px;
@@ -68,12 +71,14 @@ session_start();
             left: 20px;
         }
 
+        /* Style for event detail text */
         .event-details {
             margin-top: 5px;
             font-size: 1.1em;
             color: #555;
         }
 
+        /* Style for the edit button */
         .edit-button {
             font-size: 1em;
             padding: 10px 20px;
@@ -91,6 +96,7 @@ session_start();
         }
     </style>
     <script>
+        // Function to confirm album deletion with a user prompt
         function confirmDelete(eventId) {
             if (confirm("Are you sure you want to delete this event?")) {
                 window.location.href = "index.php?action=deleteEvent&id=" + eventId;
@@ -100,10 +106,12 @@ session_start();
 </head>
 
 <body>
+    <!-- Button to return to the main timeline page, positioned at the top-right corner -->
     <div class="top-right-corner">
         <a href="index.php"><button class="return-button">Back to timeline</button></a>
     </div>
 
+    <!-- Display the event details -->
     <h1><?= htmlspecialchars($event['name']) ?></h1>
 
     <?php if (!empty($event['image_url'])): ?>
@@ -117,6 +125,7 @@ session_start();
 
     <p class="event-description"><?= htmlspecialchars($event['description']) ?></p>
 
+    <!-- Show edit and delete buttons if the user is logged in -->
     <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
         <div class="top-left-corner">
             <a href="index.php?action=editEvent&id=<?= htmlspecialchars($event['id']) ?>">

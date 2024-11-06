@@ -7,6 +7,7 @@ class Database
     private $password = "Kipulet6!!";
     public $conn;
 
+    // Create connection with the database
     public function getConnection()
     {
         $this->conn = null;

@@ -3,17 +3,21 @@ require_once __DIR__ . '/config/db.php';
 require_once __DIR__ . '/controllers/GenreController.php';
 require_once __DIR__ . '/controllers/UserController.php';
 
+// Initialize database connection
 $database = new Database();
 $db = $database->getConnection();
 
+// Determine the action to be taken based on the "action" query parameter
 $action = isset($_GET['action']) ? $_GET['action'] : 'showMainPage';
 
 switch ($action) {
     case 'login':
+        // Display login view for the user
         require __DIR__ . '/views/login_view.php';
         break;
 
     case 'logout':
+        // End the user session, log out, and redirect to the main page
         session_start();
         session_unset();
         session_destroy();
@@ -22,6 +26,7 @@ switch ($action) {
         break;
 
     case 'changePassword':
+        // Process password change if the user is logged in
         session_start();
         if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
             header('Location: index.php?action=login');
@@ -47,6 +52,7 @@ switch ($action) {
         break;
 
     case 'createEvent':
+        // Process event creation when form is submitted
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $eventController = new EventController($db);
             $result = $eventController->createEvent($_POST);
@@ -64,6 +70,7 @@ switch ($action) {
         break;
 
     case 'editEvent':
+        // Display edit event form for a specific event if user is logged in
         session_start();
         if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
             header('Location: index.php?action=login');
@@ -77,6 +84,7 @@ switch ($action) {
         break;
 
     case 'updateEvent':
+        // Process event update when form is submitted
         session_start();
         if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
             header('Location: index.php?action=login');
@@ -105,6 +113,7 @@ switch ($action) {
         break;
 
     case 'deleteEvent':
+        // Delete a specific event if user is logged in
         session_start();
         if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] && isset($_GET['id'])) {
             $eventId = (int)$_GET['id'];
@@ -123,6 +132,7 @@ switch ($action) {
         break;
 
     case 'createArtist':
+        // Process artist creation if form is submitted
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $artistController = new ArtistController($db);
             $result = $artistController->createArtist($_POST);
@@ -140,6 +150,7 @@ switch ($action) {
         break;
 
     case 'editArtist':
+        // Display edit form for an artist if user is logged in
         session_start();
         if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
             header('Location: index.php?action=login');
@@ -153,6 +164,7 @@ switch ($action) {
         break;
 
     case 'updateArtist':
+        // Process artist update when form is submitted
         session_start();
         if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
             header('Location: index.php?action=login');
@@ -181,6 +193,7 @@ switch ($action) {
         break;
 
     case 'deleteArtist':
+        // Delete an artist if user is logged in and artist ID is provided
         session_start();
         if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] && isset($_GET['id'])) {
             $artistId = (int)$_GET['id'];
@@ -199,6 +212,7 @@ switch ($action) {
         break;
 
     case 'createAlbum':
+        // Process album creation if form is submitted
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $albumController = new AlbumController($db);
             $result = $albumController->createAlbum($_POST);
@@ -216,6 +230,7 @@ switch ($action) {
         break;
 
     case 'editAlbum':
+        // Display edit form for an album if user is logged in
         session_start();
         if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
             header('Location: index.php?action=login');
@@ -229,6 +244,7 @@ switch ($action) {
         break;
 
     case 'updateAlbum':
+        // Process album update when form is submitted
         session_start();
         if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
             header('Location: index.php?action=login');
@@ -257,6 +273,7 @@ switch ($action) {
         break;
 
     case 'deleteAlbum':
+        // Delete an album if user is logged in and album ID is provided
         session_start();
         if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] && isset($_GET['id'])) {
             $albumId = (int)$_GET['id'];
@@ -275,6 +292,7 @@ switch ($action) {
         break;
 
     case 'showGenre':
+        // Display a specific genre's details
         $genreId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
         $genreController = new GenreController($db);
         $genre = $genreController->getGenreById($genreId);
@@ -286,6 +304,7 @@ switch ($action) {
         break;
 
     case 'showAlbum':
+        // Display details for a specific album
         $albumId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
         $albumController = new AlbumController($db);
         $album = $albumController->getAlbumById($albumId);
@@ -297,6 +316,7 @@ switch ($action) {
         break;
 
     case 'showArtist':
+        // Display details for a specific artist
         $artistId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
         $artistController = new ArtistController($db);
         $artist = $artistController->getArtistById($artistId);
@@ -308,6 +328,7 @@ switch ($action) {
         break;
 
     case 'showEvent':
+        // Display details for a specific event
         $eventId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
         $eventController = new EventController($db);
         $event = $eventController->getEventById($eventId);
@@ -319,6 +340,7 @@ switch ($action) {
         break;
 
     case 'updateGenreColor':
+        // Update genre color if user is logged in
         session_start();
         if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
             header('Location: index.php?action=login');
@@ -341,6 +363,7 @@ switch ($action) {
 
     case 'showMainPage':
     default:
+        // Show main page with all genres and their albums, artists, and events
         $genreController = new GenreController($db);
         $genres = $genreController->getAllGenres();
         $genreData = [];

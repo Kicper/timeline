@@ -4,6 +4,7 @@ session_start();
 require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../controllers/UserController.php';
 
+// Create a new instance of the Database class and establish a database connection
 $database = new Database();
 $db = $database->getConnection();
 
@@ -13,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
+    // Create a new instance of the UserController to handle the login process
     $userController = new UserController($db);
     if ($userController->login($username, $password)) {
         $_SESSION['logged_in'] = true;
@@ -33,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
+        /* Basic styling for body and html, ensuring the content is centered */
         body,
         html {
             height: 100%;
@@ -66,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             width: 100%;
         }
 
+        /* Styling for the text and password input fields */
         input[type="text"],
         input[type="password"] {
             width: 100%;
@@ -76,6 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             box-sizing: border-box;
         }
 
+        /* Styling for the submit button */
         button[type="submit"] {
             padding: 10px 20px;
             font-size: 1em;
@@ -121,6 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
+    <!-- Return button to go back to the timeline -->
     <div class="top-right-corner">
         <a href="index.php"><button class="return-button">Return to the Timeline</button></a>
     </div>
